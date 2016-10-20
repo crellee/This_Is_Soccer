@@ -34,5 +34,7 @@ namespace This_Is_Soccer.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<This_Is_Soccer.Models.Entity.ClubModel> ClubModels { get; set; }
     }
 }

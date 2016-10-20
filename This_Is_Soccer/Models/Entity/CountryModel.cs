@@ -11,5 +11,7 @@ namespace This_Is_Soccer.Models.Entity
         [Key]
         public int CountryId { get; set; }
         public string CountryName { get; set; }
+
+        public ICollection<ClubModel> Clubs { get; set; }
     }
 }
