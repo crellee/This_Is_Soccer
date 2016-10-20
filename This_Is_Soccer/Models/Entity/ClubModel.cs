@@ -10,7 +10,7 @@ namespace This_Is_Soccer.Models.Entity
     {
         [Key]
         public int ClubId { get; set; }
-        public int ClubName { get; set; }
+        public string ClubName { get; set; }
         public string ClubLogo { get; set; }
 
         //Foreign key to Country
