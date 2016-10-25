@@ -32,7 +32,8 @@
             @Html.DisplayFor(modelItem => item.ClubName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ClubLogo)
+            <img src="@Html.DisplayFor(modelItem => item.ClubLogo)" width="100px" height="100px">
+            
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ClubId }) |
