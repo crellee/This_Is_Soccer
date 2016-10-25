@@ -50,7 +50,7 @@ namespace This_Is_Soccer.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PlayerId,PlayerName,ClubId,PositionId")] PlayerModel playerModel)
+        public ActionResult Create([Bind(Include = "PlayerId,PlayerName,PlayerPic,ClubId,PositionId")] PlayerModel playerModel)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace This_Is_Soccer.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PlayerId,PlayerName,ClubId,PositionId")] PlayerModel playerModel)
+        public ActionResult Edit([Bind(Include = "PlayerId,PlayerName,PlayerPic,ClubId,PositionId")] PlayerModel playerModel)
         {
             if (ModelState.IsValid)
             {

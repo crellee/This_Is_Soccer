@@ -11,6 +11,7 @@ namespace This_Is_Soccer.Models.Entity
         [Key]
         public int PlayerId { get; set; }
         public string PlayerName { get; set; }
+        public string PlayerPic { get; set; }
 
         //Foreign key to Club
         public int ClubId { get; set; }
