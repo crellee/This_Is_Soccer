@@ -16,5 +16,9 @@ namespace This_Is_Soccer.Models.Entity
         //Foreign key to Country
         public int CountryId { get; set; }
         public CountryModel Country { get; set; }
+
+        //til PlayerModel
+        public ICollection<PlayerModel> Players { get; set; }
+
     }
 }

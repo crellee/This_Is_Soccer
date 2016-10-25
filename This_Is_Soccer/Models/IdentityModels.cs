@@ -36,5 +36,9 @@ namespace This_Is_Soccer.Models
         }
 
         public System.Data.Entity.DbSet<This_Is_Soccer.Models.Entity.ClubModel> ClubModels { get; set; }
+
+        public System.Data.Entity.DbSet<This_Is_Soccer.Models.Entity.PositionModel> PositionModels { get; set; }
+
+        public System.Data.Entity.DbSet<This_Is_Soccer.Models.Entity.PlayerModel> PlayerModels { get; set; }
     }
 }
