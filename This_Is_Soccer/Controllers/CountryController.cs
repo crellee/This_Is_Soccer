@@ -8,32 +8,38 @@ using System.Web;
 using System.Web.Mvc;
 using This_Is_Soccer.Models;
 using This_Is_Soccer.Models.Entity;
+using This_Is_Soccer.Models.Interface;
 
 namespace This_Is_Soccer.Controllers
 {
     public class CountryController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
+        private IGenericRepository<CountryModel> repository = null;
+
+        public CountryController()
+        {
+            this.repository = new GenericRepository<CountryModel>();
+        }
+        
+        CountryController(IGenericRepository<CountryModel> repository)
+        {
+            this.repository = repository;
+        }
+
 
         // GET: Country
         public ActionResult Index()
         {
-            return View(db.Countries.ToList());
+            List<CountryModel> model = (List<CountryModel>)repository.SelectAll();
+            return View(model);
         }
 
         // GET: Country/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CountryModel countryModel = db.Countries.Find(id);
-            if (countryModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(countryModel);
+            CountryModel existing = repository.SelectByID(id);
+            return View(existing);
         }
 
         // GET: Country/Create
@@ -50,28 +56,19 @@ namespace This_Is_Soccer.Controllers
         public ActionResult Create([Bind(Include = "CountryId,CountryName")] CountryModel countryModel)
         {
             if (ModelState.IsValid)
-            {
-                db.Countries.Add(countryModel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            { 
+            repository.Insert(countryModel);
+            repository.Save();
+            return RedirectToAction("Index");
             }
-
             return View(countryModel);
         }
 
         // GET: Country/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CountryModel countryModel = db.Countries.Find(id);
-            if (countryModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(countryModel);
+            CountryModel existing = repository.SelectByID(id);
+            return View(existing);
         }
 
         // POST: Country/Edit/5
@@ -83,8 +80,8 @@ namespace This_Is_Soccer.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(countryModel).State = EntityState.Modified;
-                db.SaveChanges();
+                repository.Update(countryModel);
+                repository.Save();
                 return RedirectToAction("Index");
             }
             return View(countryModel);
@@ -93,16 +90,8 @@ namespace This_Is_Soccer.Controllers
         // GET: Country/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CountryModel countryModel = db.Countries.Find(id);
-            if (countryModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(countryModel);
+            CountryModel existing = repository.SelectByID(id);
+            return View(existing);
         }
 
         // POST: Country/Delete/5
@@ -110,19 +99,18 @@ namespace This_Is_Soccer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CountryModel countryModel = db.Countries.Find(id);
-            db.Countries.Remove(countryModel);
-            db.SaveChanges();
+            repository.Delete(id);
+            repository.Save();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+      /*  protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }*/
     }
 }
