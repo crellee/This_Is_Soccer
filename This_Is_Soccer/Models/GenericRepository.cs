@@ -8,8 +8,8 @@ namespace This_Is_Soccer.Models
 {
     public class GenericRepository<T> : Interface.IGenericRepository<T> where T : class
     {
-        private ApplicationDbContext db = null;
-        private DbSet<T> table = null;
+        protected ApplicationDbContext db = null;
+        protected DbSet<T> table = null;
 
         public GenericRepository()
         {
