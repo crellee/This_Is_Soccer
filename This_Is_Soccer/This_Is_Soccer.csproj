@@ -210,7 +210,6 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CountryRepository.cs" />
     <Compile Include="Models\Entity\ClubModel.cs" />
     <Compile Include="Models\Entity\CountryModel.cs" />
     <Compile Include="Models\Entity\PlayerModel.cs" />

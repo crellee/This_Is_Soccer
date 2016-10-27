@@ -8,19 +8,34 @@ using System.Web;
 using System.Web.Mvc;
 using This_Is_Soccer.Models;
 using This_Is_Soccer.Models.Entity;
+using This_Is_Soccer.Models.Interface;
 
 namespace This_Is_Soccer.Controllers
 {
     public class PositionController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
+        private IGenericRepository<PositionModel> repository = null;
+
+        public PositionController()
+        {
+            this.repository = new GenericRepository<PositionModel>();
+        }
+
+
+        PositionController(IGenericRepository<PositionModel> repository)
+        {
+            this.repository = repository;
+        }
 
         // GET: Position
         public ActionResult Index()
         {
-            return View(db.PositionModels.ToList());
+            List<PositionModel> model = (List<PositionModel>)repository.SelectAll();
+            return View(model);
         }
 
+        
         // GET: Position/Details/5
         public ActionResult Details(int? id)
         {
@@ -28,14 +43,14 @@ namespace This_Is_Soccer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PositionModel positionModel = db.PositionModels.Find(id);
+            PositionModel positionModel = repository.SelectByID(id);
             if (positionModel == null)
             {
                 return HttpNotFound();
             }
             return View(positionModel);
         }
-
+        
         // GET: Position/Create
         public ActionResult Create()
         {
@@ -51,14 +66,15 @@ namespace This_Is_Soccer.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.PositionModels.Add(positionModel);
-                db.SaveChanges();
+                repository.Insert(positionModel);
+                repository.Save();
                 return RedirectToAction("Index");
             }
 
             return View(positionModel);
         }
 
+        
         // GET: Position/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -66,14 +82,14 @@ namespace This_Is_Soccer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PositionModel positionModel = db.PositionModels.Find(id);
+            PositionModel positionModel = repository.SelectByID(id);
             if (positionModel == null)
             {
                 return HttpNotFound();
             }
             return View(positionModel);
         }
-
+        
         // POST: Position/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -83,13 +99,13 @@ namespace This_Is_Soccer.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(positionModel).State = EntityState.Modified;
-                db.SaveChanges();
+                repository.Update(positionModel);
+                repository.Save();
                 return RedirectToAction("Index");
             }
             return View(positionModel);
         }
-
+        
         // GET: Position/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -97,7 +113,7 @@ namespace This_Is_Soccer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PositionModel positionModel = db.PositionModels.Find(id);
+            PositionModel positionModel = repository.SelectByID(id);
             if (positionModel == null)
             {
                 return HttpNotFound();
@@ -105,17 +121,18 @@ namespace This_Is_Soccer.Controllers
             return View(positionModel);
         }
 
+        
         // POST: Position/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PositionModel positionModel = db.PositionModels.Find(id);
-            db.PositionModels.Remove(positionModel);
-            db.SaveChanges();
+            repository.Delete(id);
+            repository.Save();
             return RedirectToAction("Index");
         }
 
+        /*
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -124,5 +141,7 @@ namespace This_Is_Soccer.Controllers
             }
             base.Dispose(disposing);
         }
+        */
     }
+    
 }
