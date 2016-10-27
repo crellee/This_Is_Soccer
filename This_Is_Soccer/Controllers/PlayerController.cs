@@ -8,12 +8,25 @@ using System.Web;
 using System.Web.Mvc;
 using This_Is_Soccer.Models;
 using This_Is_Soccer.Models.Entity;
+using This_Is_Soccer.Models.Interface;
 
 namespace This_Is_Soccer.Controllers
 {
     public class PlayerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private IGenericRepository<PlayerModel> repository = null;
+
+        public PlayerController()
+        {
+            this.repository = new GenericRepository<PlayerModel>();
+        }
+
+
+        PlayerController(IGenericRepository<PlayerModel> repository)
+        {
+            this.repository = repository;
+        }
 
         // GET: Player
         public ActionResult Index()
@@ -21,7 +34,7 @@ namespace This_Is_Soccer.Controllers
             var playerModels = db.PlayerModels.Include(p => p.Club).Include(p => p.Position);
             return View(playerModels.ToList());
         }
-
+        
         // GET: Player/Details/5
         public ActionResult Details(int? id)
         {
@@ -133,5 +146,6 @@ namespace This_Is_Soccer.Controllers
             }
             base.Dispose(disposing);
         }
+        
     }
 }
