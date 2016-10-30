@@ -14,27 +14,34 @@ namespace This_Is_Soccer.Controllers
     public class ClubController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ClubRepository clubRepository = null;
+        private GenericRepository<ClubModel> genRepository = null;
+
+        public ClubController()
+        {
+            this.clubRepository = new ClubRepository();
+            this.genRepository = new GenericRepository<ClubModel>();
+
+        }
+        
+        ClubController(ClubRepository repository)
+        {
+            this.clubRepository = repository;
+        }
+
 
         // GET: Club
         public ActionResult Index()
         {
-            var clubModels = db.ClubModels.Include(c => c.Country);
-            return View(clubModels.ToList());
+            var clubModels = clubRepository.SelectAll();
+            return View(clubModels);
         }
 
         // GET: Club/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ClubModel clubModel = db.ClubModels.Find(id);
-            if (clubModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(clubModel);
+            ClubModel existing = clubRepository.SelectByID(id);
+            return View(existing);
         }
 
         // GET: Club/Create
