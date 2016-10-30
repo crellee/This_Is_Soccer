@@ -15,10 +15,17 @@ namespace This_Is_Soccer.Models
             var clubModels = db.ClubModels.Include(c => c.Country);
             return clubModels;
         }
-        public new ClubModel SelectByID(object id)
+        public ClubModel SelectByID(int? id)
         {
-            table.Include(c => c.CountryId);
-            return table.Find(id);
+            var clubModel = db.ClubModels
+            .Include(c => c.Country)
+            .FirstOrDefault(c => c.ClubId == id);
+
+            return clubModel;
+        }
+        public DbSet<CountryModel> GetCountryModels()
+        {
+            return db.Countries;
         }
     }
 }

@@ -13,41 +13,48 @@ namespace This_Is_Soccer.Controllers
 {
     public class ClubController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private ClubRepository clubRepository = null;
+        private ClubRepository repository = null;
         private GenericRepository<ClubModel> genRepository = null;
 
         public ClubController()
         {
-            this.clubRepository = new ClubRepository();
+            this.repository = new ClubRepository();
             this.genRepository = new GenericRepository<ClubModel>();
 
         }
         
         ClubController(ClubRepository repository)
         {
-            this.clubRepository = repository;
+            this.repository = repository;
         }
 
 
         // GET: Club
         public ActionResult Index()
         {
-            var clubModels = clubRepository.SelectAll();
+            var clubModels = repository.SelectAll();
             return View(clubModels);
         }
 
         // GET: Club/Details/5
         public ActionResult Details(int? id)
         {
-            ClubModel existing = clubRepository.SelectByID(id);
-            return View(existing);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ClubModel clubModel = repository.SelectByID(id);
+            if (clubModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(clubModel);
         }
 
         // GET: Club/Create
         public ActionResult Create()
         {
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "CountryName");
+            ViewBag.CountryId = new SelectList(repository.GetCountryModels(), "CountryId", "CountryName");
             return View();
         }
 
@@ -60,12 +67,12 @@ namespace This_Is_Soccer.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ClubModels.Add(clubModel);
-                db.SaveChanges();
+                genRepository.Insert(clubModel);
+                genRepository.Save();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "CountryName", clubModel.CountryId);
+            ViewBag.CountryId = new SelectList(repository.GetCountryModels(), "CountryId", "CountryName", clubModel.CountryId);
             return View(clubModel);
         }
 
@@ -76,12 +83,12 @@ namespace This_Is_Soccer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClubModel clubModel = db.ClubModels.Find(id);
+            ClubModel clubModel = repository.SelectByID(id);
             if (clubModel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "CountryName", clubModel.CountryId);
+            ViewBag.CountryId = new SelectList(repository.GetCountryModels(), "CountryId", "CountryName", clubModel.CountryId);
             return View(clubModel);
         }
 
@@ -94,11 +101,11 @@ namespace This_Is_Soccer.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(clubModel).State = EntityState.Modified;
-                db.SaveChanges();
+                genRepository.Update(clubModel);
+                genRepository.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "CountryName", clubModel.CountryId);
+            ViewBag.CountryId = new SelectList(repository.GetCountryModels(), "CountryId", "CountryName", clubModel.CountryId);
             return View(clubModel);
         }
 
@@ -109,7 +116,7 @@ namespace This_Is_Soccer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClubModel clubModel = db.ClubModels.Find(id);
+            ClubModel clubModel = repository.SelectByID(id);
             if (clubModel == null)
             {
                 return HttpNotFound();
@@ -122,19 +129,9 @@ namespace This_Is_Soccer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ClubModel clubModel = db.ClubModels.Find(id);
-            db.ClubModels.Remove(clubModel);
-            db.SaveChanges();
+            genRepository.Delete(id);
+            genRepository.Save();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
