@@ -17,16 +17,19 @@ namespace This_Is_Soccer.Controllers
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
         private PlayerRepository repository = null;
+        private GenericRepository<PlayerModel> genericRepo = null;
 
         public PlayerController()
         {
             this.repository = new PlayerRepository();
+            this.genericRepo = new GenericRepository<PlayerModel>();
         }
 
         
-        PlayerController(PlayerRepository repository)
+        PlayerController(PlayerRepository repository, GenericRepository<PlayerModel> genericRepo)
         {
             this.repository = repository;
+            this.genericRepo = genericRepo;
         }
         
 
@@ -34,9 +37,9 @@ namespace This_Is_Soccer.Controllers
         public ActionResult Index()
         {
             var playerModels = repository.SelectAll();
-            return View(playerModels.ToList());
+            return View(playerModels);
         }
-        /*
+        
         // GET: Player/Details/5
         public ActionResult Details(int? id)
         {
@@ -44,7 +47,7 @@ namespace This_Is_Soccer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PlayerModel playerModel = db.PlayerModels.Find(id);
+            PlayerModel playerModel = repository.SelectByID(id);
             if (playerModel == null)
             {
                 return HttpNotFound();
@@ -52,14 +55,15 @@ namespace This_Is_Soccer.Controllers
             return View(playerModel);
         }
 
+        
         // GET: Player/Create
         public ActionResult Create()
         {
-            ViewBag.ClubId = new SelectList(db.ClubModels, "ClubId", "ClubName");
-            ViewBag.PositionId = new SelectList(db.PositionModels, "PositionId", "PositionName");
+            ViewBag.ClubId = new SelectList(repository.GetClubModels(), "ClubId", "ClubName");
+            ViewBag.PositionId = new SelectList(repository.GetPositionModels(), "PositionId", "PositionName");
             return View();
         }
-
+        
         // POST: Player/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -69,16 +73,18 @@ namespace This_Is_Soccer.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.PlayerModels.Add(playerModel);
-                db.SaveChanges();
+                //Here we can use the generic repository
+                genericRepo.Insert(playerModel);
+                genericRepo.Save();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClubId = new SelectList(db.ClubModels, "ClubId", "ClubName", playerModel.ClubId);
-            ViewBag.PositionId = new SelectList(db.PositionModels, "PositionId", "PositionName", playerModel.PositionId);
+            ViewBag.ClubId = new SelectList(repository.GetClubModels(), "ClubId", "ClubName", playerModel.ClubId);
+            ViewBag.PositionId = new SelectList(repository.GetPositionModels(), "PositionId", "PositionName", playerModel.PositionId);
             return View(playerModel);
         }
 
+        
         // GET: Player/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -86,16 +92,17 @@ namespace This_Is_Soccer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PlayerModel playerModel = db.PlayerModels.Find(id);
+            PlayerModel playerModel = repository.SelectByID(id);
             if (playerModel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ClubId = new SelectList(db.ClubModels, "ClubId", "ClubName", playerModel.ClubId);
-            ViewBag.PositionId = new SelectList(db.PositionModels, "PositionId", "PositionName", playerModel.PositionId);
+            ViewBag.ClubId = new SelectList(repository.GetClubModels(), "ClubId", "ClubName", playerModel.ClubId);
+            ViewBag.PositionId = new SelectList(repository.GetPositionModels(), "PositionId", "PositionName", playerModel.PositionId);
             return View(playerModel);
         }
 
+        
         // POST: Player/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -105,15 +112,17 @@ namespace This_Is_Soccer.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(playerModel).State = EntityState.Modified;
-                db.SaveChanges();
+                genericRepo.Update(playerModel);
+                //db.Entry(playerModel).State = EntityState.Modified;
+                genericRepo.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.ClubId = new SelectList(db.ClubModels, "ClubId", "ClubName", playerModel.ClubId);
-            ViewBag.PositionId = new SelectList(db.PositionModels, "PositionId", "PositionName", playerModel.PositionId);
+            ViewBag.ClubId = new SelectList(repository.GetClubModels(), "ClubId", "ClubName", playerModel.ClubId);
+            ViewBag.PositionId = new SelectList(repository.GetPositionModels(), "PositionId", "PositionName", playerModel.PositionId);
             return View(playerModel);
         }
 
+        
         // GET: Player/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -121,7 +130,7 @@ namespace This_Is_Soccer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PlayerModel playerModel = db.PlayerModels.Find(id);
+            PlayerModel playerModel = repository.SelectByID(id);
             if (playerModel == null)
             {
                 return HttpNotFound();
@@ -129,17 +138,18 @@ namespace This_Is_Soccer.Controllers
             return View(playerModel);
         }
 
+        
         // POST: Player/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PlayerModel playerModel = db.PlayerModels.Find(id);
-            db.PlayerModels.Remove(playerModel);
-            db.SaveChanges();
+            genericRepo.Delete(id);
+            genericRepo.Save();
             return RedirectToAction("Index");
         }
 
+        /*
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -149,6 +159,7 @@ namespace This_Is_Soccer.Controllers
             base.Dispose(disposing);
         }
         */
+        
         
     }
 }
