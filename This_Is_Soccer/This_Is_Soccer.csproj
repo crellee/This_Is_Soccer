@@ -305,6 +305,9 @@
     <Content Include="Views\Player\Edit.cshtml" />
     <Content Include="Views\Player\Index.cshtml" />
     <Content Include="Views\Shared\_ClubForm.cshtml" />
+    <Content Include="Views\Shared\_CountryForm.cshtml" />
+    <Content Include="Views\Shared\_PlayerForm.cshtml" />
+    <Content Include="Views\Shared\_PositionForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
