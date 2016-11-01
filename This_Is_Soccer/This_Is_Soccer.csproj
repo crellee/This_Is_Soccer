@@ -213,6 +213,7 @@
     <Compile Include="Models\ClubRepository.cs" />
     <Compile Include="Models\Entity\ClubModel.cs" />
     <Compile Include="Models\Entity\CountryModel.cs" />
+    <Compile Include="Models\Entity\MyTeamModel.cs" />
     <Compile Include="Models\Entity\PlayerModel.cs" />
     <Compile Include="Models\Entity\PositionModel.cs" />
     <Compile Include="Models\GenericRepository.cs" />
