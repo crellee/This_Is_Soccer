@@ -5,6 +5,9 @@ namespace This_Is_Soccer.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
     using Models.Entity;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<This_Is_Soccer.Models.ApplicationDbContext>
     {
@@ -15,6 +18,31 @@ namespace This_Is_Soccer.Migrations
 
         protected override void Seed(This_Is_Soccer.Models.ApplicationDbContext context)
         {
+
+            var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            rm.Create(new IdentityRole("admin"));
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            var client1 = new ApplicationUser { UserName = "secret@admin.com" };
+
+            var result1 = userManager.Create(client1, "P_assw0rd1");
+
+            if (result1.Succeeded == false)
+            {
+                client1 = userManager.FindByName("secret@admin.com");
+            }
+
+
+            //save this change to the database to get the GUID that is used as an Id.
+            context.SaveChanges();
+
+            userManager.AddToRole(client1.Id, "admin");
+            
+
+
+
+
             context.Countries.AddOrUpdate(h => h.CountryId, new CountryModel[]
                                                              {
                                                                  new CountryModel

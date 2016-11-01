@@ -11,6 +11,7 @@ using This_Is_Soccer.Models.Entity;
 
 namespace This_Is_Soccer.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ClubController : Controller
     {
         private ClubRepository repository = null;
