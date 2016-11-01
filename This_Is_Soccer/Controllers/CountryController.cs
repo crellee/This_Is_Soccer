@@ -12,6 +12,7 @@ using This_Is_Soccer.Models.Interface;
 
 namespace This_Is_Soccer.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CountryController : Controller
     {
         //private ApplicationDbContext db = new ApplicationDbContext();

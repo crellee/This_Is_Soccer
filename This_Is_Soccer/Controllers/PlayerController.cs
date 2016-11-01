@@ -55,18 +55,20 @@ namespace This_Is_Soccer.Controllers
             return View(playerModel);
         }
 
-        
+
         // GET: Player/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.ClubId = new SelectList(repository.GetClubModels(), "ClubId", "ClubName");
             ViewBag.PositionId = new SelectList(repository.GetPositionModels(), "PositionId", "PositionName");
             return View();
         }
-        
+
         // POST: Player/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PlayerId,PlayerName,PlayerPic,ClubId,PositionId")] PlayerModel playerModel)
@@ -84,8 +86,9 @@ namespace This_Is_Soccer.Controllers
             return View(playerModel);
         }
 
-        
+
         // GET: Player/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -102,10 +105,11 @@ namespace This_Is_Soccer.Controllers
             return View(playerModel);
         }
 
-        
+
         // POST: Player/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PlayerId,PlayerName,PlayerPic,ClubId,PositionId")] PlayerModel playerModel)
@@ -122,8 +126,9 @@ namespace This_Is_Soccer.Controllers
             return View(playerModel);
         }
 
-        
+
         // GET: Player/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -138,8 +143,9 @@ namespace This_Is_Soccer.Controllers
             return View(playerModel);
         }
 
-        
+
         // POST: Player/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
