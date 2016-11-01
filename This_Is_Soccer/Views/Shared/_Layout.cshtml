@@ -26,7 +26,6 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -52,6 +51,7 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                           <ul class="nav navbar-nav">
+                              <li>@Html.Partial("_LoginPartial")</li>
                               <li>@Html.ActionLink("Home", "Index", "Home")</li>
                               <li>@Html.ActionLink("About", "About", "Home")</li>
                               <li>@Html.ActionLink("Contact", "Contact", "Home")</li>

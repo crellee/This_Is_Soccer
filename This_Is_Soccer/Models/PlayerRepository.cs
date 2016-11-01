@@ -22,7 +22,7 @@ namespace This_Is_Soccer.Models
             var playerModel = db.PlayerModels
                 .Include(p => p.Position)
                 .Include(p => p.Club)
-                .FirstOrDefault(p => p.PlayerId == id);
+                .First(p => p.PlayerId == id);
 
             return playerModel;
         }
