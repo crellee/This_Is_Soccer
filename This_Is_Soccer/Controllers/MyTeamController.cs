@@ -19,8 +19,9 @@ namespace This_Is_Soccer.Controllers
         {
             string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
             //var myTeam = db.MyTeamModels.Include(m => m.PositionId).ToList();
-            var query = db.MyTeamModels.Where(m => UserId == m.Id).Include(m => m.Id).Include(m => m.PositionId).Include(m => m.PlayerId);
-            return View(query);
+            //var query = db.MyTeamModels.Include(m => m.Id).Include(m => m.PositionId).Include(m => m.PlayerId);
+            MyTeamModel myTeamModel = db.MyTeamModels.Find(UserId);
+            return View(myTeamModel);
             //string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
             //System.Diagnostics.Debug.WriteLine(UserId);
         }

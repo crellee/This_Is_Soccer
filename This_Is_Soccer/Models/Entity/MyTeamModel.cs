@@ -20,7 +20,6 @@ namespace This_Is_Soccer.Models.Entity
         public string Id { get; set; }
         public ApplicationUser User { get; set; }
 
-        [Key]
         [Column(Order = 2)]
         public int PositionId { get; set; }
         public int PlayerId { get; set; }

@@ -1,21 +1,20 @@
-﻿@model IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel>
+﻿@model This_Is_Soccer.Models.Entity.MyTeamModel
 
 @{
     ViewBag.Title = "Index";
     <link href="~/Content/football_pitch.css" rel="stylesheet"/>
 }
 
-@foreach (var item in Model)
-{ 
 <div class="football-pitch">
     <div class=forward>
         <!--Left attack-->
         <div class="attack player-position">
             <img src="zlatan.png">
-            <p class="player-name">@Html.DisplayFor(modelItem => item.PlayerId)</p>
+            <p class="player-name">@Html.DisplayFor(model => model.PlayerId)</p>
             <p class="position">FWD</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
+        }
 
         <!--Right Attack-->
         <div class="attacker player-position">
@@ -95,4 +94,3 @@
     </div>
 </div>
 
-}
