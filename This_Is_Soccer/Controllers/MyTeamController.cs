@@ -35,6 +35,14 @@ namespace This_Is_Soccer.Controllers
 
 
             var myTeamModels = db.MyTeamModels.Include(m => m.Player).Where(m => m.Id.Contains(UserId));
+            var listen = myTeamModels.ToList();
+            System.Diagnostics.Debug.WriteLine(listen.Count().ToString());
+            System.Diagnostics.Debug.WriteLine("Kig ovenover");
+
+            List<MyTeamModel> classList = db.MyTeamModels.Include(m => m.Player).Where(m => m.Id.Contains(UserId)).ToList();
+            int count = classList.Count();
+            System.Diagnostics.Debug.WriteLine(count);
+
             return View(myTeamModels.ToList());
         }
     }

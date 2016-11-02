@@ -7,17 +7,24 @@
 
 <div class="football-pitch">
     <div class=forward>
-@foreach (var item in Model)
-{
+        @foreach(var item in Model)
+                    {
+
         <!--Left attack-->
+                        if (item.Player.PositionId == 11)
+                        {
         <div class="attack player-position">
-            <img src="@Html.DisplayFor(modelItem => item.Player.PlayerPic)">
-        
-            <p class="player-name">{@Html.DisplayFor(modelItem => item.Player.PlayerName)</p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">FWD</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
-}
+            }
+            else
+            {
+               
+            }
+        }
 
         <!--Right Attack-->
         <div class="attacker player-position">
