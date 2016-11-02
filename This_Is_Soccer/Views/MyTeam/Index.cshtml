@@ -1,16 +1,18 @@
-﻿
+﻿@model IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel>
 
 @{
     ViewBag.Title = "Index";
     <link href="~/Content/football_pitch.css" rel="stylesheet"/>
 }
 
+@foreach (var item in Model)
+{ 
 <div class="football-pitch">
     <div class=forward>
         <!--Left attack-->
         <div class="attack player-position">
             <img src="zlatan.png">
-            <p class="player-name"></p>
+            <p class="player-name">@Html.DisplayFor(modelItem => item.PlayerId)</p>
             <p class="position">FWD</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
@@ -92,3 +94,5 @@
         </div>
     </div>
 </div>
+
+}
