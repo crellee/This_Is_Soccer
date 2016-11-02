@@ -5,14 +5,20 @@
     <link href="~/Content/football_pitch.css" rel="stylesheet"/>
 }
 
-<div class="football-pitch">
-    <div class=forward>
-        @foreach(var item in Model)
-                    {
 
+<div class="football-pitch">
+
+    <div class=forward>
+        @{ int att = 0; }
+        @{ int mid = 0; }
+        @{ int def = 0;}
+        @{ int gk = 0;}
+@foreach (var item in Model)
+{
         <!--Left attack-->
-                        if (item.Player.PositionId == 11)
-                        {
+    if (item.Player.PositionId == 11)
+    {
+        att++;
         <div class="attack player-position">
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
@@ -20,87 +26,139 @@
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
             }
-            else
-            {
-               
-            }
-        }
 
+        if (item.Player.PositionId == 10)
+        {
+        att++;
         <!--Right Attack-->
         <div class="attacker player-position">
-            <img src="aguero.png">
-            <p class="player-name"></p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">FWD</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
+        }
+        }
+        @while (att != 2)
+                {
+                    att++;
+            <div class="attacker player-position">
+                <img src="" />
+                <p class="player-name"> </p>
+                <p class="position">FWD</p>
+                <span class="btn btn-success btn-xs">Add player</span>
+            </div>
+        }
     </div>
 
     <div class="midfield">
+
+@foreach (var item in Model)
+{
+    if (item.Player.PositionId == 9)
+    {
+        mid++;
         <div class="midfielder player-position">
-            <img src="messi.png">
-            <p class="player-name"></p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">LW</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
-
+    }
+    if (item.Player.PositionId == 8)
+    {
+        mid++;
         <div class="midfielder player-position">
-            <img src="kante.png">
-            <p class="player-name"></p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">CM</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
-
+    }
+    if (item.Player.PositionId == 7)
+    {
+        mid++;
         <div class="midfielder player-position">
-            <img src="pogba.png">
-            <p class="player-name"></p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">CM</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
-
+    }
+    if (item.Player.PositionId == 6)
+    {
+        mid++;
         <div class="midfielder player-position">
-            <img src="ronaldo.png">
-            <p class="player-name"></p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">RW</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
-
+    }
+}
     </div>
+
     <div class="defense">
+@foreach (var item in Model)
+{
+    if (item.Player.PositionId == 5)
+    {
+        def++;
         <div class="defender player-position">
-            <img src="alaba.png">
-            <p class="player-name"></p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">LB</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
-
+    }
+    if (item.Player.PositionId == 4)
+    {
+        def++;
         <div class="defender player-position">
-            <img src="oshea.png">
-            <p class="player-name"></p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">CB</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
-
+    }
+    if (item.Player.PositionId == 3)
+    {
+        def++;
         <div class="defender player-position">
-            <img src="Eric_Bertrand_Bailly.png">
-            <p class="player-name"></p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">CB</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
-
+    }
+    if (item.Player.PositionId == 2)
+    {
+        def++;
         <div class="defender player-position">
-            <img src="ivanovic.png">
-            <p class="player-name"></p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">RB</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
+    }
+}
     </div>
     <div class="goalkeeper">
+@foreach (var item in Model)
+{
+    gk++;
+    if (item.Player.PositionId == 1)
+    {
         <div class="player-position">
-            <img src="degea.png">
-            <p class="player-name">a</p>
+            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
+            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">GK</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
+    }
+}
     </div>
+
 </div>
+
 
