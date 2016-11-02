@@ -1,4 +1,4 @@
-﻿@model This_Is_Soccer.Models.Entity.MyTeamModel
+﻿@model IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel>
 
 @{
     ViewBag.Title = "Index";
@@ -7,14 +7,22 @@
 
 <div class="football-pitch">
     <div class=forward>
+@foreach (var item in Model)
+{
         <!--Left attack-->
         <div class="attack player-position">
-            <img src="zlatan.png">
-            <p class="player-name">@Html.DisplayFor(model => model.PlayerId)</p>
+            <img src="@Html.DisplayFor(modelItem => item.Player.PlayerPic)">
+            @if(item.PositionId == 11)
+            { 
+            <p class="player-name">@Html.DisplayFor(modelItem => item.Player.PlayerName)</p>
+            }else
+            {
+                <p class="player-name"></p>
+            }
             <p class="position">FWD</p>
             <span class="btn btn-success btn-xs">Add player</span>
         </div>
-        }
+}
 
         <!--Right Attack-->
         <div class="attacker player-position">

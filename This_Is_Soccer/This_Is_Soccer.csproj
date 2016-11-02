@@ -202,6 +202,7 @@
     <Compile Include="Controllers\ClubController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LorteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyTeamController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
@@ -312,6 +313,11 @@
     <Content Include="Views\Shared\_PlayerForm.cshtml" />
     <Content Include="Views\Shared\_PositionForm.cshtml" />
     <Content Include="Views\MyTeam\Index.cshtml" />
+    <Content Include="Views\Lorte\Create.cshtml" />
+    <Content Include="Views\Lorte\Delete.cshtml" />
+    <Content Include="Views\Lorte\Details.cshtml" />
+    <Content Include="Views\Lorte\Edit.cshtml" />
+    <Content Include="Views\Lorte\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
