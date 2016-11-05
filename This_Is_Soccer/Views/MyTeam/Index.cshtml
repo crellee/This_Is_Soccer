@@ -23,7 +23,7 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">FWD</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
             }
 
@@ -35,7 +35,7 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">FWD</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
         }
         }
@@ -45,7 +45,7 @@
             <div class="attacker player-position">
                 <img src="" />
                 <p class="player-name"> </p>
-                <p class="position">FWD</p>
+                <p class="position"></p>
                 <span class="btn btn-success btn-xs">Add player</span>
             </div>
         }
@@ -62,7 +62,7 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">LW</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
     }
     if (item.Player.PositionId == 8)
@@ -72,7 +72,7 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">CM</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
     }
     if (item.Player.PositionId == 7)
@@ -82,7 +82,7 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">CM</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
     }
     if (item.Player.PositionId == 6)
@@ -92,10 +92,21 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">RW</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
     }
+   
 }
+        @while (mid != 4)
+        {
+            mid++;
+            <div class="midfielder player-position">
+                <img src="" />
+                <p class="player-name"> </p>
+                <p class="position"></p>
+                <span class="btn btn-success btn-xs">Add player</span>
+            </div>
+        }
     </div>
 
     <div class="defense">
@@ -108,7 +119,7 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">LB</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
     }
     if (item.Player.PositionId == 4)
@@ -118,7 +129,7 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">CB</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
     }
     if (item.Player.PositionId == 3)
@@ -128,7 +139,7 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">CB</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
     }
     if (item.Player.PositionId == 2)
@@ -138,25 +149,47 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">RB</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
     }
 }
+        @while (def != 4)
+        {
+            def++;
+            <div class="defender player-position">
+                <img src="" />
+                <p class="player-name"> </p>
+                <p class="position"></p>
+                <span class="btn btn-success btn-xs">Add player</span>
+            </div>
+        }
+
     </div>
     <div class="goalkeeper">
 @foreach (var item in Model)
 {
-    gk++;
+
     if (item.Player.PositionId == 1)
     {
+        gk++;
         <div class="player-position">
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">GK</p>
-            <span class="btn btn-success btn-xs">Add player</span>
+            <span class="btn btn-success btn-xs">Remove player</span>
         </div>
     }
 }
+        @if (gk != 1)
+        {
+            gk++;
+            <div class="player-position">
+                <img src="" />
+                <p class="player-name"> </p>
+                <p class="position"></p>
+                <span class="btn btn-success btn-xs">Add player</span>
+            </div>
+        }
     </div>
 
 </div>
