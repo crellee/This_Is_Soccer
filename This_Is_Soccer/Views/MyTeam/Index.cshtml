@@ -10,89 +10,85 @@
 @{ int def = 0;}
 @{ int gk = 0;}
 
-@{ bool lcf = false; }
-@{ bool rcf = false; }
-@{ bool lm = false; }
-@{ bool rm = false; }
-@{ bool lcm = false; }
-@{ bool rcm = false; }
-@{ bool lb = false; }
-@{ bool rb = false; }
-@{ bool lcb = false; }
-@{ bool rcb = false; }
-@{ bool cgk = false; }
+@{  bool lcf = false;
+    bool rcf = false;
+    bool lm = false;
+    bool rm = false;
+    bool lcm = false;
+    bool rcm = false;
+    bool lb = false;
+    bool rb = false;
+    bool lcb = false;
+    bool rcb = false;
+    bool cgk = false; }
 
-@{ var attackers = new List<This_Is_Soccer.Models.Entity.MyTeamModel>(); }
-@{ var midders = new List<This_Is_Soccer.Models.Entity.MyTeamModel>(); }
 @{ var defenders = new List<This_Is_Soccer.Models.Entity.MyTeamModel>(); }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objlcf = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objrcf = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objlm = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objrm = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objlcm = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objrcm = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objlb = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objrb = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objlcb = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objrcb = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objgk = null; }
 
 @foreach (var item in Model)
 {
-    if (item.Player.PositionId == 11){ lcf = true; attackers.Add(item);}
-    if(item.Player.PositionId == 10){rcf = true; attackers.Add(item);}
-    if (item.Player.PositionId == 9){lm = true; midders.Add(item);}
-    if (item.Player.PositionId == 8){rm = true; midders.Add(item);}
-    if (item.Player.PositionId == 7){lcm = true; midders.Add(item);}
-    if (item.Player.PositionId == 6){rcm = true; midders.Add(item);}
-    if (item.Player.PositionId == 5){lb = true; defenders.Add(item);}
-    if (item.Player.PositionId == 4){rb = true; defenders.Add(item);}
-    if (item.Player.PositionId == 3){lcb = true; defenders.Add(item);}
-    if (item.Player.PositionId == 2){rcb = true;defenders.Add(item);}
-    if (item.Player.PositionId == 1){cgk = true;}
+    if (item.Player.PositionId == 11){ lcf = true; objlcf = item; }
+    if (item.Player.PositionId == 10){rcf = true; objrcf = item;  }
+    if (item.Player.PositionId == 9){lm = true; objlm = item; }
+    if (item.Player.PositionId == 8){rm = true; objrm = item; }
+    if (item.Player.PositionId == 7){lcm = true; objlcm = item; }
+    if (item.Player.PositionId == 6){rcm = true; objrcm = item; }
+    if (item.Player.PositionId == 5){lb = true; objlb = item; }
+    if (item.Player.PositionId == 4){rb = true; objrb = item; }
+    if (item.Player.PositionId == 3){lcb = true; objlcb = item; }
+    if (item.Player.PositionId == 2){rcb = true; objrcb = item; }
+    if (item.Player.PositionId == 1){cgk = true; objgk = item; }
 }
-
-@{IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel> atts = 
-        new List<This_Is_Soccer.Models.Entity.MyTeamModel>(attackers); }
-@{IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel> midds = 
-        new List<This_Is_Soccer.Models.Entity.MyTeamModel>(midders); }
-@{IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel> defs = 
-        new List<This_Is_Soccer.Models.Entity.MyTeamModel>(defenders); }
 
 <div class="football-pitch">
     <div class=forward>
-
-@foreach (var item in atts)
-{
         <!--Left attack-->
-    if (lcf == true && item.Player.PositionId == 11)
-    {
-        att++;
         <div class="attack player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
+            <img src="@if (lcf == true) {@Html.DisplayFor(modelitem => objlcf.Player.PlayerPic)}">
+            <p class="player-name">@if (lcf == true) {@Html.DisplayFor(modelitem => objlcf.Player.PlayerName)}</p>
             <p class="position">FWD</p>
             
-            <span class="btn btn-success btn-xs">@Html.ActionLink("Remove player", "RemovePlayer", new { id = item.PlayerId })</span>
+            @if (lcf == true)
+            {
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcf.PlayerId })</span>
+            }
+            @if (lcf == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-     }
 
-        if (item.Player.PositionId == 10)
-        {
-        att++;
         <!--Right Attack-->
         <div class="attacker player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
+            <img src="@if (rcf == true) {@Html.DisplayFor(modelitem => objrcf.Player.PlayerPic)}">
+            <p class="player-name">@if (rcf == true) {@Html.DisplayFor(modelitem => objrcf.Player.PlayerName)}</p>
             <p class="position">FWD</p>
-            <span class="btn btn-success btn-xs">@Html.ActionLink("Remove player", "RemovePlayer", new { id = item.PlayerId })</span>
-        </div>
-        }
-        }
-        @while (att != 2)
-                {
-                    att++;
-            <div class="attacker player-position">
-                <img src="" />
-                <p class="player-name"> </p>
-                <p class="position"></p>
-                <span class="btn btn-success btn-xs">Add player</span>
-            </div>
-        }
+            @if (rcf == true)
+            {
+            <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcf.PlayerId })</span>
+            }
+            @if (rcf == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
+</div>
+        
+
     </div>
 
     <div class="midfield">
 
-@foreach (var item in midds)
+@foreach (var item in Model)
 {
     if (item.Player.PositionId == 9)
     {
@@ -149,7 +145,7 @@
     </div>
 
     <div class="defense">
-@foreach (var item in defs)
+@foreach (var item in Model)
 {
     if (item.Player.PositionId == 5)
     {
