@@ -5,18 +5,56 @@
     <link href="~/Content/football_pitch.css" rel="stylesheet"/>
 }
 
+@{ int att = 0; }
+@{ int mid = 0; }
+@{ int def = 0;}
+@{ int gk = 0;}
 
-<div class="football-pitch">
+@{ bool lcf = false; }
+@{ bool rcf = false; }
+@{ bool lm = false; }
+@{ bool rm = false; }
+@{ bool lcm = false; }
+@{ bool rcm = false; }
+@{ bool lb = false; }
+@{ bool rb = false; }
+@{ bool lcb = false; }
+@{ bool rcb = false; }
+@{ bool cgk = false; }
 
-    <div class=forward>
-        @{ int att = 0; }
-        @{ int mid = 0; }
-        @{ int def = 0;}
-        @{ int gk = 0;}
+@{ var attackers = new List<This_Is_Soccer.Models.Entity.MyTeamModel>(); }
+@{ var midders = new List<This_Is_Soccer.Models.Entity.MyTeamModel>(); }
+@{ var defenders = new List<This_Is_Soccer.Models.Entity.MyTeamModel>(); }
+
 @foreach (var item in Model)
 {
+    if (item.Player.PositionId == 11){ lcf = true; attackers.Add(item);}
+    if(item.Player.PositionId == 10){rcf = true; attackers.Add(item);}
+    if (item.Player.PositionId == 9){lm = true; midders.Add(item);}
+    if (item.Player.PositionId == 8){rm = true; midders.Add(item);}
+    if (item.Player.PositionId == 7){lcm = true; midders.Add(item);}
+    if (item.Player.PositionId == 6){rcm = true; midders.Add(item);}
+    if (item.Player.PositionId == 5){lb = true; defenders.Add(item);}
+    if (item.Player.PositionId == 4){rb = true; defenders.Add(item);}
+    if (item.Player.PositionId == 3){lcb = true; defenders.Add(item);}
+    if (item.Player.PositionId == 2){rcb = true;defenders.Add(item);}
+    if (item.Player.PositionId == 1){cgk = true;}
+}
+
+@{IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel> atts = 
+        new List<This_Is_Soccer.Models.Entity.MyTeamModel>(attackers); }
+@{IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel> midds = 
+        new List<This_Is_Soccer.Models.Entity.MyTeamModel>(midders); }
+@{IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel> defs = 
+        new List<This_Is_Soccer.Models.Entity.MyTeamModel>(defenders); }
+
+<div class="football-pitch">
+    <div class=forward>
+
+@foreach (var item in atts)
+{
         <!--Left attack-->
-    if (item.Player.PositionId == 11)
+    if (lcf == true && item.Player.PositionId == 11)
     {
         att++;
         <div class="attack player-position">
@@ -26,7 +64,7 @@
             
             <span class="btn btn-success btn-xs">@Html.ActionLink("Remove player", "RemovePlayer", new { id = item.PlayerId })</span>
         </div>
-            }
+     }
 
         if (item.Player.PositionId == 10)
         {
@@ -36,7 +74,7 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">FWD</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            <span class="btn btn-success btn-xs">@Html.ActionLink("Remove player", "RemovePlayer", new { id = item.PlayerId })</span>
         </div>
         }
         }
@@ -54,7 +92,7 @@
 
     <div class="midfield">
 
-@foreach (var item in Model)
+@foreach (var item in midds)
 {
     if (item.Player.PositionId == 9)
     {
@@ -111,7 +149,7 @@
     </div>
 
     <div class="defense">
-@foreach (var item in Model)
+@foreach (var item in defs)
 {
     if (item.Player.PositionId == 5)
     {
