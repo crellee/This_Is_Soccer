@@ -23,7 +23,8 @@
             <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
             <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
             <p class="position">FWD</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            
+            <span class="btn btn-success btn-xs">@Html.ActionLink("Remove player", "RemovePlayer", new { id = item.PlayerId })</span>
         </div>
             }
 

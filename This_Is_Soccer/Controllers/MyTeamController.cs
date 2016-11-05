@@ -45,5 +45,13 @@ namespace This_Is_Soccer.Controllers
 
             return View(myTeamModels.ToList());
         }
+        public ActionResult RemovePlayer(int? id)
+        {
+            //MyTeamModel myTeamModel = db.MyTeamModels.Find(id);
+            MyTeamModel recorddataview = db.MyTeamModels.SingleOrDefault(m => m.PlayerId == id);
+            db.MyTeamModels.Remove(recorddataview);
+            db.SaveChanges();
+            return RedirectToAction("index");
+        }
     }
 }
