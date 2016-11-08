@@ -4,11 +4,7 @@
     ViewBag.Title = "Index";
     <link href="~/Content/football_pitch.css" rel="stylesheet"/>
 }
-
-@{ int att = 0; }
-@{ int mid = 0; }
-@{ int def = 0;}
-@{ int gk = 0;}
+<!--de her attributter og alle loopsne på fielded fjernes, husk det...-->
 
 @{  bool lcf = false;
     bool rcf = false;
@@ -20,20 +16,19 @@
     bool rb = false;
     bool lcb = false;
     bool rcb = false;
-    bool cgk = false; }
+    bool gk = false; }
 
-@{ var defenders = new List<This_Is_Soccer.Models.Entity.MyTeamModel>(); }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objlcf = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objrcf = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objlm = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objrm = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objlcm = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objrcm = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objlb = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objrb = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objlcb = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objrcb = null; }
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objgk = null; }
+@{ This_Is_Soccer.Models.Entity.MyTeamModel objlcf = null; 
+   This_Is_Soccer.Models.Entity.MyTeamModel objrcf = null; 
+   This_Is_Soccer.Models.Entity.MyTeamModel objlm = null; 
+   This_Is_Soccer.Models.Entity.MyTeamModel objrm = null; 
+   This_Is_Soccer.Models.Entity.MyTeamModel objlcm = null; 
+   This_Is_Soccer.Models.Entity.MyTeamModel objrcm = null; 
+   This_Is_Soccer.Models.Entity.MyTeamModel objlb = null; 
+   This_Is_Soccer.Models.Entity.MyTeamModel objrb = null; 
+   This_Is_Soccer.Models.Entity.MyTeamModel objlcb = null;
+   This_Is_Soccer.Models.Entity.MyTeamModel objrcb = null; 
+   This_Is_Soccer.Models.Entity.MyTeamModel objgk = null; }
 
 @foreach (var item in Model)
 {
@@ -47,22 +42,22 @@
     if (item.Player.PositionId == 4){rb = true; objrb = item; }
     if (item.Player.PositionId == 3){lcb = true; objlcb = item; }
     if (item.Player.PositionId == 2){rcb = true; objrcb = item; }
-    if (item.Player.PositionId == 1){cgk = true; objgk = item; }
+    if (item.Player.PositionId == 1){gk = true; objgk = item; }
 }
 
 <div class="football-pitch">
     <div class=forward>
         <!--Left attack-->
         <div class="attack player-position">
-            <img src="@if (lcf == true) {@Html.DisplayFor(modelitem => objlcf.Player.PlayerPic)}">
-            <p class="player-name">@if (lcf == true) {@Html.DisplayFor(modelitem => objlcf.Player.PlayerName)}</p>
+            <img src="@if (objlcf != null) {@Html.DisplayFor(modelitem => objlcf.Player.PlayerPic)}">
+            <p class="player-name">@if (objlcf != null) {@Html.DisplayFor(modelitem => objlcf.Player.PlayerName)}</p>
             <p class="position">FWD</p>
             
-            @if (lcf == true)
+            @if (objlcf != null)
             {
                 <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcf.PlayerId })</span>
             }
-            @if (lcf == false)
+            @if (objlcf == null)
             {
                 <span class="btn btn-success btn-xs">Add Player</span>
             }
@@ -88,143 +83,151 @@
 
     <div class="midfield">
 
-@foreach (var item in Model)
-{
-    if (item.Player.PositionId == 9)
-    {
-        mid++;
         <div class="midfielder player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
-            <p class="position">LW</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            <img src="@if (lm == true) {@Html.DisplayFor(modelitem => objlm.Player.PlayerPic)}">
+            <p class="player-name">@if (lm == true)
+            {@Html.DisplayFor(modelitem => objlm.Player.PlayerName)}</p>
+            <p class="position">LM</p>
+            @if (lm == true)
+            {
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlm.PlayerId })</span>
+            }
+            @if (lm == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-    }
-    if (item.Player.PositionId == 8)
-    {
-        mid++;
+    
+
         <div class="midfielder player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
-            <p class="position">CM</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            <img src="@if (lcm == true) {@Html.DisplayFor(modelitem => objlcm.Player.PlayerPic)}">
+            <p class="player-name">@if (lcm == true)
+            {@Html.DisplayFor(modelitem => objlcm.Player.PlayerName)}</p>
+            <p class="position">LCM</p>
+            @if (lcm == true)
+            {
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcm.PlayerId })</span>
+            }
+            @if (lcm == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-    }
-    if (item.Player.PositionId == 7)
-    {
-        mid++;
+
         <div class="midfielder player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
-            <p class="position">CM</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            <img src="@if (rcm == true) {@Html.DisplayFor(modelitem => objrcm.Player.PlayerPic)}">
+            <p class="player-name">@if (rcm == true)
+            {@Html.DisplayFor(modelitem => objrcm.Player.PlayerName)}</p>
+            <p class="position">RCM</p>
+            @if (rcm == true)
+            {
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcm.PlayerId })</span>
+            }
+            @if (rcm == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-    }
-    if (item.Player.PositionId == 6)
-    {
-        mid++;
+
+
         <div class="midfielder player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
-            <p class="position">RW</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            <img src="@if (rm == true) {@Html.DisplayFor(modelitem => objrm.Player.PlayerPic)}">
+            <p class="player-name">@if (rm == true)
+            {@Html.DisplayFor(modelitem => objrm.Player.PlayerName)}</p>
+            <p class="position">RM</p>
+            @if (rm == true)
+            {
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrm.PlayerId })</span>
+            }
+            @if (rm == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-    }
+    
    
-}
-        @while (mid != 4)
-        {
-            mid++;
-            <div class="midfielder player-position">
-                <img src="" />
-                <p class="player-name"> </p>
-                <p class="position"></p>
-                <span class="btn btn-success btn-xs">Add player</span>
-            </div>
-        }
-    </div>
+
 
     <div class="defense">
-@foreach (var item in Model)
-{
-    if (item.Player.PositionId == 5)
-    {
-        def++;
+
         <div class="defender player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
+            <img src="@if (lb == true) {@Html.DisplayFor(modelitem => objlb.Player.PlayerPic)}">
+            <p class="player-name">@if (lb == true){@Html.DisplayFor(modelitem => objlb.Player.PlayerName)}</p>
             <p class="position">LB</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            @if (lb == true)
+            {
+            <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlb.PlayerId })</span>
+            }
+            @if (lb == false)
+            {
+            <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-    }
-    if (item.Player.PositionId == 4)
-    {
-        def++;
+
         <div class="defender player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
-            <p class="position">CB</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            <img src="@if (lcb == true) {@Html.DisplayFor(modelitem => objlcb.Player.PlayerPic)}">
+            <p class="player-name">@if (lcb == true)
+            {@Html.DisplayFor(modelitem => objlcb.Player.PlayerName)}</p>
+            <p class="position">LCB</p>
+            @if (lcb == true)
+            {
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcb.PlayerId })</span>
+            }
+            @if (lcb == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-    }
-    if (item.Player.PositionId == 3)
-    {
-        def++;
+
         <div class="defender player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
-            <p class="position">CB</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            <img src="@if (rcb == true) {@Html.DisplayFor(modelitem => objrcb.Player.PlayerPic)}">
+            <p class="player-name">@if (rcb == true)
+            {@Html.DisplayFor(modelitem => objrcb.Player.PlayerName)}</p>
+            <p class="position">RCB</p>
+            @if (rcb == true)
+            {
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcb.PlayerId })</span>
+            }
+            @if (rcb == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-    }
-    if (item.Player.PositionId == 2)
-    {
-        def++;
+    
+
         <div class="defender player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
+            <img src="@if (rb == true) {@Html.DisplayFor(modelitem => objrb.Player.PlayerPic)}">
+            <p class="player-name">@if (rb == true)
+            {@Html.DisplayFor(modelitem => objrb.Player.PlayerName)}</p>
             <p class="position">RB</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            @if (rb == true)
+            {
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrb.PlayerId })</span>
+            }
+            @if (rb == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-    }
-}
-        @while (def != 4)
-        {
-            def++;
-            <div class="defender player-position">
-                <img src="" />
-                <p class="player-name"> </p>
-                <p class="position"></p>
-                <span class="btn btn-success btn-xs">Add player</span>
-            </div>
-        }
+    
 
     </div>
     <div class="goalkeeper">
-@foreach (var item in Model)
-{
 
-    if (item.Player.PositionId == 1)
-    {
-        gk++;
         <div class="player-position">
-            <img src="@Html.DisplayFor(modelitem => item.Player.PlayerPic)">
-            <p class="player-name">@Html.DisplayFor(modelitem => item.Player.PlayerName)</p>
+            <img src="@if (gk == true) {@Html.DisplayFor(modelitem => objgk.Player.PlayerPic)}">
+            <p class="player-name">@if (gk == true)
+            {@Html.DisplayFor(modelitem => objgk.Player.PlayerName)}</p>
             <p class="position">GK</p>
-            <span class="btn btn-success btn-xs">Remove player</span>
+            @if (gk == true)
+            {
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objgk.PlayerId })</span>
+            }
+            @if (gk == false)
+            {
+                <span class="btn btn-success btn-xs">Add Player</span>
+            }
         </div>
-    }
-}
-        @if (gk != 1)
-        {
-            gk++;
-            <div class="player-position">
-                <img src="" />
-                <p class="player-name"> </p>
-                <p class="position"></p>
-                <span class="btn btn-success btn-xs">Add player</span>
-            </div>
-        }
     </div>
 
 </div>
