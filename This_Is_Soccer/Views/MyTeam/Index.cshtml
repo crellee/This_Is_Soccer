@@ -223,9 +223,11 @@
             {
                 <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objgk.PlayerId }, new { @class = "text-remove" })</span>
             }
+            @{ int i = 1; }
             @if (gk == false)
             {
-                <span class="btn btn-success btn-xs">Add Player</span>
+                
+                <span class="btn btn-success btn-xs"> @Html.ActionLink("Add Player", "GetPlayers",  new { id = i})</span>
             }
         </div>
     </div>

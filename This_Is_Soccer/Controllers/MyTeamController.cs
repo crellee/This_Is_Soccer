@@ -53,5 +53,20 @@ namespace This_Is_Soccer.Controllers
             db.SaveChanges();
             return RedirectToAction("index");
         }
+        
+        public ActionResult GetPlayers(int? posId)
+        {
+            System.Diagnostics.Debug.WriteLine(posId + " dette var posId");
+            var players = db.PlayerModels.Where(p => p.PositionId.Equals(1));
+            var playerlist = players.ToList();
+            System.Diagnostics.Debug.WriteLine(playerlist.Count().ToString());
+
+            //System.Diagnostics.Debug.WriteLine(players);
+            System.Diagnostics.Debug.WriteLine("se lige en gang ovenover!! :D");
+
+            return RedirectToAction("Index");
+
+        }
+        
     }
 }
