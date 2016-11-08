@@ -131,3 +131,18 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.text-remove{
+    color: #fff;
+    text-decoration: none;
+}
+
+.text-remove:hover{
+    color: #fff;
+    text-decoration: none;
+}
+
+.text-remove:visited{
+    color: #fff;
+    text-decoration: none;
+}

@@ -55,7 +55,7 @@
             
             @if (objlcf != null)
             {
-                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcf.PlayerId })</span>
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcf.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (objlcf == null)
             {
@@ -70,7 +70,7 @@
             <p class="position">FWD</p>
             @if (rcf == true)
             {
-            <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcf.PlayerId })</span>
+            <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcf.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (rcf == false)
             {
@@ -90,7 +90,7 @@
             <p class="position">LM</p>
             @if (lm == true)
             {
-                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlm.PlayerId })</span>
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlm.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (lm == false)
             {
@@ -106,7 +106,7 @@
             <p class="position">LCM</p>
             @if (lcm == true)
             {
-                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcm.PlayerId })</span>
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcm.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (lcm == false)
             {
@@ -121,7 +121,7 @@
             <p class="position">RCM</p>
             @if (rcm == true)
             {
-                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcm.PlayerId })</span>
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcm.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (rcm == false)
             {
@@ -137,7 +137,7 @@
             <p class="position">RM</p>
             @if (rm == true)
             {
-                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrm.PlayerId })</span>
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrm.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (rm == false)
             {
@@ -156,7 +156,7 @@
             <p class="position">LB</p>
             @if (lb == true)
             {
-            <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlb.PlayerId })</span>
+            <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlb.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (lb == false)
             {
@@ -171,7 +171,7 @@
             <p class="position">LCB</p>
             @if (lcb == true)
             {
-                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcb.PlayerId })</span>
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcb.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (lcb == false)
             {
@@ -186,7 +186,7 @@
             <p class="position">RCB</p>
             @if (rcb == true)
             {
-                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcb.PlayerId })</span>
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcb.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (rcb == false)
             {
@@ -202,7 +202,7 @@
             <p class="position">RB</p>
             @if (rb == true)
             {
-                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrb.PlayerId })</span>
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrb.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (rb == false)
             {
@@ -221,7 +221,7 @@
             <p class="position">GK</p>
             @if (gk == true)
             {
-                <span class="btn btn-success btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objgk.PlayerId })</span>
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objgk.PlayerId }, new { @class = "text-remove" })</span>
             }
             @if (gk == false)
             {
