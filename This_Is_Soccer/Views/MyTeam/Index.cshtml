@@ -236,7 +236,7 @@
     </div>
         </div>
     <div class="col-md-5" style="height: 350px; overflow:auto;">
-        <table class="table">
+        <table class="table players-table">
             @{ var de = new MyTeamController();
                var players = de.getEverything(); 
              }
@@ -244,6 +244,7 @@
             {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.PlayerName)</td>
+                    <td><span class="btn btn-success">@Html.ActionLink("Add", null)</span></td>
                    
                 </tr>
             }

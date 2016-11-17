@@ -1,0 +1,19 @@
+﻿@using This_Is_Soccer.Models.Entity;
+
+@model List<PlayerModel>
+@{
+    ViewBag.Title = "GetPlayers";
+}
+
+<h2>GetPlayers</h2>
+
+<table>
+ 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => item.PlayerName)</td>
+            </tr>
+        }
+    
+</table>
