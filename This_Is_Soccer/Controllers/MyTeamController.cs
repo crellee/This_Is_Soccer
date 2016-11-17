@@ -36,8 +36,6 @@ namespace This_Is_Soccer.Controllers
 
             var myTeamModels = db.MyTeamModels.Include(m => m.Player).Where(m => m.Id.Contains(UserId));
             var listen = myTeamModels.ToList();
-            System.Diagnostics.Debug.WriteLine(listen.Count().ToString());
-            System.Diagnostics.Debug.WriteLine("Kig ovenover");
 
             List<MyTeamModel> classList = db.MyTeamModels.Include(m => m.Player).Where(m => m.Id.Contains(UserId)).ToList();
             int count = classList.Count();
@@ -47,6 +45,8 @@ namespace This_Is_Soccer.Controllers
         }
         public ActionResult RemovePlayer(int? id)
         {
+            System.Diagnostics.Debug.WriteLine("kig under: ");
+            System.Diagnostics.Debug.WriteLine(id);
             //MyTeamModel myTeamModel = db.MyTeamModels.Find(id);
             MyTeamModel teamModels = db.MyTeamModels.SingleOrDefault(m => m.PlayerId == id);
             db.MyTeamModels.Remove(teamModels);
@@ -54,16 +54,14 @@ namespace This_Is_Soccer.Controllers
             return RedirectToAction("index");
         }
         
-        public ActionResult GetPlayers(int? posId)
+        public ActionResult GetPlayers(int? id)
         {
-            System.Diagnostics.Debug.WriteLine(posId + " dette var posId");
+            System.Diagnostics.Debug.WriteLine("kig nedenunder");
+            System.Diagnostics.Debug.WriteLine(id);
             var players = db.PlayerModels.Where(p => p.PositionId.Equals(1));
             var playerlist = players.ToList();
-            System.Diagnostics.Debug.WriteLine(playerlist.Count().ToString());
 
             //System.Diagnostics.Debug.WriteLine(players);
-            System.Diagnostics.Debug.WriteLine("se lige en gang ovenover!! :D");
-
             return RedirectToAction("Index");
 
         }
