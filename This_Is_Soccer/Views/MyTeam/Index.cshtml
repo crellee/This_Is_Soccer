@@ -206,9 +206,9 @@
                 {
                     <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrb.PlayerId }, new { @class = "text-remove" })</span>
                 }
-                @if (rb == false)
-                {
-                    <span class="btn btn-success btn-xs">Add Player</span>
+                                @if (rb == false)
+                                {
+                                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 4 })</span>
                 }
             </div>
     
@@ -237,8 +237,10 @@
         </div>
     <div class="col-md-5" style="height: 350px; overflow:auto;">
         <table class="table">
-            @{ var de = new MyTeamController(); }
-            @foreach(var item in de.getEverything().ToList())
+            @{ var de = new MyTeamController();
+               var players = de.getEverything(); 
+             }
+            @foreach (var item in players)
             {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.PlayerName)</td>

@@ -13,7 +13,7 @@ namespace This_Is_Soccer.Controllers
     public class MyTeamController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        IEnumerable<PlayerModel> playerModels = new List<PlayerModel>();
+        static IEnumerable<PlayerModel> playerModels = new List<PlayerModel>();
 
         // GET: MyTeam
         public ActionResult Index()
@@ -55,32 +55,15 @@ namespace This_Is_Soccer.Controllers
             return RedirectToAction("index");
         }
         
-        public ActionResult GetPlayers(int? id)
-        {
-            System.Diagnostics.Debug.WriteLine("kig nedenunder");
-            System.Diagnostics.Debug.WriteLine(id);
-            var players = db.PlayerModels.Where(p => p.PositionId.Equals(1));
-            var playerlist = players.ToList();
-
-            //System.Diagnostics.Debug.WriteLine(players);
-            return RedirectToAction("Index");
-
-        }
         public ActionResult setEverything(int? id)
         {            
-            var fuck = db.PlayerModels.Include(p => p.Club).Include(p => p.Position).Where(p => p.PositionId == id);
-            System.Diagnostics.Debug.WriteLine("Kig under");
-            System.Diagnostics.Debug.WriteLine(id);
-            System.Diagnostics.Debug.WriteLine(playerModels);
-            this.playerModels = fuck.ToList();
+            playerModels = db.PlayerModels.Include(p => p.Club).Include(p => p.Position).Where(p => p.PositionId == id);
             return RedirectToAction("Index");
 
         }
 
         public IEnumerable<PlayerModel> getEverything()
         {
-            var fuck = db.PlayerModels.Include(p => p.Club).Include(p => p.Position).Where(p => p.PositionId == 1);
-            playerModels = fuck.ToList();
             return playerModels;
         }
         
