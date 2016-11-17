@@ -66,6 +66,21 @@ namespace This_Is_Soccer.Controllers
         {
             return playerModels;
         }
+        public ActionResult addPlayerToMyTeam(int id)
+        {
+            string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            MyTeamModel som = new MyTeamModel
+            {
+                Id = UserId,
+                PlayerId = id
+            };
+            db.MyTeamModels.Add(som);
+            db.SaveChanges();
+            setEverything(0);
+
+            return RedirectToAction("Index");
+        }
         
     }
 }

@@ -9,16 +9,13 @@ namespace This_Is_Soccer.Models.Entity
 {
     public class MyTeamModel
     {
-        [Key]
-        [Column(Order = 0)]
-        public string MyTeamId { get; set; }
 
         [Key]
-        [Column(Order = 1)]
+        [Column(Order = 0)]
         public string Id { get; set; }
         public ApplicationUser User { get; set; }
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 1)]
         public int PlayerId { get; set; }
         public PlayerModel Player { get; set; }
         
