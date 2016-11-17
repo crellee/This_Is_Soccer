@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel>
-
+@using This_Is_Soccer.Controllers
 @{
     ViewBag.Title = "Index";
     <link href="~/Content/football_pitch.css" rel="stylesheet"/>
@@ -225,23 +225,23 @@
                 {
                     <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objgk.PlayerId }, new { @class = "text-remove" })</span>
                 }
-                @{ int i = 1; }
+                @{ int i; }
                 @if (gk == false)
                 {
                 
-                    <span class="btn btn-success btn-xs"> @Html.ActionLink("Add Player", "GetPlayers",  new {id = 1})</span>
+                    <span class="btn btn-success btn-xs"> @Html.ActionLink("Add Player", "setEverything",  new {id = 1})</span>
                 }
             </div>
         </div>
     </div>
         </div>
-    @model IEnumerable <This_Is_Soccer.Models.Entity.PlayerModel>
     <div class="col-md-5" style="height: 350px; overflow:auto;">
         <table class="table">
-            @foreach(var item in Model)
+            @{ var de = new MyTeamController(); }
+            @foreach(var item in de.getEverything().ToList())
             {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Player.PlayerName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PlayerName)</td>
                    
                 </tr>
             }
