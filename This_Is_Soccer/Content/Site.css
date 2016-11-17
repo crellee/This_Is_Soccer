@@ -148,6 +148,9 @@ body {
 }
 
 .players-table {
-    background-color: gray;
-    border: 1px solid gray;
+   
+}
+
+.players-div{
+    border: 1px solid black;
 }
