@@ -147,11 +147,27 @@ body {
     text-decoration: none;
 }
 
-.players-table {
-   
+.players-table{
+    background-color: #fff;
+}
+
+.players-table tr:nth-child(even) {
+    background-color: #eee;
+}
+.players-table tr:nth-child(odd) {
+    background-color: #fff;
 }
 
 .players-div{
     border: 1px solid black;
     margin-left: 40px;
+    background-color: #fff;
 }
+
+.my-team-main {
+    background-image: url('img/4514537-football-stadium-wallpapers.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+}
+

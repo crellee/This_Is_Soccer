@@ -45,7 +45,7 @@
     if (item.Player.PositionId == 1){gk = true; objgk = item; }
 }
 
-<div class="row col-md-12">
+<div class="row col-md-12 my-team-main">
     <div class="col-md-7">
     <div class="football-pitch">
         <div class=forward>
@@ -236,6 +236,7 @@
     </div>
         </div>
     <div class="col-md-4 players-div" style="height: 350px; overflow:auto;">
+        <h3>Players</h3>
         <table class="table players-table">
             @{ var de = new MyTeamController();
                var players = de.getEverything(); 
