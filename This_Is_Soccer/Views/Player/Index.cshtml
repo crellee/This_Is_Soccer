@@ -5,12 +5,11 @@
 }
 
 <h2>Index</h2>
-
-<p>
 @if (User.IsInRole("admin"))
-    {
+{
+<p>
+
         @Html.ActionLink("Create New", "Create")
-    }
 </p>
 <table class="table">
     <tr>
@@ -44,21 +43,33 @@
             <img src="@Html.DisplayFor(modelItem => item.PlayerPic)" width="50px" height="50px">
         </td>
 
-   @if (User.IsInRole("admin"))
-   { 
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PlayerId }) |                                                             
             @Html.ActionLink("Details", "Details", new { id=item.PlayerId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.PlayerId })      
         </td>
-   }
-   @if (!User.IsInRole("admin"))
-   {
-        <td>
-        @Html.ActionLink("Details", "Details", new { id = item.PlayerId })
-        </td>
-   }
+   
     </tr>
 }
+    
 
 </table>
+}
+
+else
+{
+    <div class="players-wrapper">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-2 col-sm-4 col-xs-6 student-area" ;>
+                    <a href="@Url.Action("Details", "Player", new { id = item.PlayerId })"><img class="img-responsive" src="@Url.Content(item.PlayerPic)" /></a>
+                    <div class="text-area">
+                        <p>@Html.DisplayFor(modelItem => item.PlayerName) </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
