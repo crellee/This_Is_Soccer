@@ -1,4 +1,4 @@
-﻿@model IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel>
+﻿@model This_Is_Soccer.Models.Entity.MyTeamModel[]
 
 @using This_Is_Soccer.Controllers
 @{
@@ -7,60 +7,21 @@
 }
 <!--de her attributter og alle loopsne på fielded fjernes, husk det...-->
 
-@{  bool lcf = false;
-    bool rcf = false;
-    bool lm = false;
-    bool rm = false;
-    bool lcm = false;
-    bool rcm = false;
-    bool lb = false;
-    bool rb = false;
-    bool lcb = false;
-    bool rcb = false;
-    bool gk = false; }
-
-@{ This_Is_Soccer.Models.Entity.MyTeamModel objlcf = null; 
-   This_Is_Soccer.Models.Entity.MyTeamModel objrcf = null; 
-   This_Is_Soccer.Models.Entity.MyTeamModel objlm = null; 
-   This_Is_Soccer.Models.Entity.MyTeamModel objrm = null; 
-   This_Is_Soccer.Models.Entity.MyTeamModel objlcm = null; 
-   This_Is_Soccer.Models.Entity.MyTeamModel objrcm = null; 
-   This_Is_Soccer.Models.Entity.MyTeamModel objlb = null; 
-   This_Is_Soccer.Models.Entity.MyTeamModel objrb = null; 
-   This_Is_Soccer.Models.Entity.MyTeamModel objlcb = null;
-   This_Is_Soccer.Models.Entity.MyTeamModel objrcb = null; 
-   This_Is_Soccer.Models.Entity.MyTeamModel objgk = null; }
-
-@foreach (var item in Model)
-{
-    if (item.Player.PositionId == 11){ lcf = true; objlcf = item; }
-    if (item.Player.PositionId == 10){rcf = true; objrcf = item;  }
-    if (item.Player.PositionId == 9){lm = true; objlm = item; }
-    if (item.Player.PositionId == 8){rm = true; objrm = item; }
-    if (item.Player.PositionId == 7){lcm = true; objlcm = item; }
-    if (item.Player.PositionId == 6){rcm = true; objrcm = item; }
-    if (item.Player.PositionId == 5){lb = true; objlb = item; }
-    if (item.Player.PositionId == 4){rb = true; objrb = item; }
-    if (item.Player.PositionId == 3){lcb = true; objlcb = item; }
-    if (item.Player.PositionId == 2){rcb = true; objrcb = item; }
-    if (item.Player.PositionId == 1){gk = true; objgk = item; }
-}
-
 <div class="row col-md-12 my-team-main">
     <div class="col-md-7">
     <div class="football-pitch">
         <div class=forward>
             <!--Left attack-->
             <div class="attack player-position">
-                <img src="@if (objlcf != null) {@Html.DisplayFor(modelitem => objlcf.Player.PlayerPic)}">
-                <p class="player-name">@if (objlcf != null) {@Html.DisplayFor(modelitem => objlcf.Player.PlayerName)}</p>
+                <img src="@Html.DisplayFor(Model => Model[10].Player.PlayerPic)">
+                <p class="player-name">@Html.DisplayFor(Model => Model[10].Player.PlayerName)</p>
                 <p class="position">LCF</p>
             
-                @if (objlcf != null)
+                @if (Model[10] != null)
                 {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcf.PlayerId }, new { @class = "text-remove" })</span>
+                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[10].PlayerId }, new { @class = "text-remove" })</span>
                 }
-                @if (objlcf == null)
+                @if (Model[10] == null)
                 {
                     <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 11 })</span>
                 }
@@ -68,14 +29,14 @@
 
             <!--Right Attack-->
             <div class="attacker player-position">
-                <img src="@if (rcf == true) {@Html.DisplayFor(modelitem => objrcf.Player.PlayerPic)}">
-                <p class="player-name">@if (rcf == true) {@Html.DisplayFor(modelitem => objrcf.Player.PlayerName)}</p>
+                <img src="@Html.DisplayFor(Model => Model[9].Player.PlayerPic)">
+                <p class="player-name">@Html.DisplayFor(Model => Model[9].Player.PlayerName)}</p>
                 <p class="position">RCF</p>
-                @if (rcf == true)
+                @if (Model[9] != null)
                 {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcf.PlayerId }, new { @class = "text-remove" })</span>
+                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[9].PlayerId }, new { @class = "text-remove" })</span>
                 }
-                @if (rcf == false)
+                @if (Model[9] == null)
                 {
                     <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 10 })</span>
                 }
@@ -87,15 +48,15 @@
         <div class="midfield">
 
             <div class="midfielder player-position">
-                <img src="@if (lm == true) {@Html.DisplayFor(modelitem => objlm.Player.PlayerPic)}">
-                <p class="player-name">@if (lm == true)
-                {@Html.DisplayFor(modelitem => objlm.Player.PlayerName)}</p>
+                <img src="@Html.DisplayFor(Model => Model[8].Player.PlayerPic)">
+                <p class="player-name">
+                @Html.DisplayFor(Model => Model[8].Player.PlayerName)</p>
                 <p class="position">LM</p>
-                @if (lm == true)
+                @if (Model[8] != null)
                 {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlm.PlayerId }, new { @class = "text-remove" })</span>
+                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[8].PlayerId }, new { @class = "text-remove" })</span>
                 }
-                @if (lm == false)
+                @if (Model[8] == null)
                 {
                     <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 9 })</span>
                 }
@@ -103,30 +64,30 @@
     
 
             <div class="midfielder player-position">
-                <img src="@if (lcm == true) {@Html.DisplayFor(modelitem => objlcm.Player.PlayerPic)}">
-                <p class="player-name">@if (lcm == true)
-                {@Html.DisplayFor(modelitem => objlcm.Player.PlayerName)}</p>
+                <img src="@Html.DisplayFor(Model => Model[6].Player.PlayerPic)">
+                <p class="player-name">
+                @Html.DisplayFor(Model => Model[6].Player.PlayerName)</p>
                 <p class="position">LCM</p>
-                @if (lcm == true)
+                @if (Model[6] != null)
                 {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcm.PlayerId }, new { @class = "text-remove" })</span>
+                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[6].PlayerId }, new { @class = "text-remove" })</span>
                 }
-                @if (lcm == false)
+                @if (Model[6] == null)
                 {
                     <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 7 })</span>
                 }
             </div>
 
             <div class="midfielder player-position">
-                <img src="@if (rcm == true) {@Html.DisplayFor(modelitem => objrcm.Player.PlayerPic)}">
-                <p class="player-name">@if (rcm == true)
-                {@Html.DisplayFor(modelitem => objrcm.Player.PlayerName)}</p>
+                <img src="@Html.DisplayFor(Model => Model[5].Player.PlayerPic)">
+                <p class="player-name">
+                @Html.DisplayFor(Model => Model[5].Player.PlayerName)</p>
                 <p class="position">RCM</p>
-                @if (rcm == true)
+                @if (Model[5] != null)
                 {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcm.PlayerId }, new { @class = "text-remove" })</span>
+                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[5].PlayerId }, new { @class = "text-remove" })</span>
                 }
-                @if (rcm == false)
+                @if (Model[5] == null)
                 {
                     <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 6 })</span>
                 }
@@ -134,107 +95,110 @@
 
 
             <div class="midfielder player-position">
-                <img src="@if (rm == true) {@Html.DisplayFor(modelitem => objrm.Player.PlayerPic)}">
-                <p class="player-name">@if (rm == true)
-                {@Html.DisplayFor(modelitem => objrm.Player.PlayerName)}</p>
+                <img src="@Html.DisplayFor(Model => Model[7].Player.PlayerPic)">
+                <p class="player-name">
+                @Html.DisplayFor(Model => Model[7].Player.PlayerName)</p>
                 <p class="position">RM</p>
-                @if (rm == true)
+                @if (Model[7] != null)
                 {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrm.PlayerId }, new { @class = "text-remove" })</span>
+                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[7].PlayerId }, new { @class = "text-remove" })</span>
                 }
-                @if (rm == false)
+                @if (Model[7] == null)
                 {
                     <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 8 })</span>
                 }
             </div>
         </div>
-   
-
 
         <div class="defense">
 
             <div class="defender player-position">
-                <img src="@if (lb == true) {@Html.DisplayFor(modelitem => objlb.Player.PlayerPic)}">
-                <p class="player-name">@if (lb == true){@Html.DisplayFor(modelitem => objlb.Player.PlayerName)}</p>
+                <img src="@Html.DisplayFor(Model => Model[4].Player.PlayerPic)">
+                <p class="player-name">
+                @Html.DisplayFor(Model => Model[4].Player.PlayerName)</p>
                 <p class="position">LB</p>
-                @if (lb == true)
+                @if (Model[4] != null)
                 {
-                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlb.PlayerId }, new { @class = "text-remove" })</span>
+                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[4].PlayerId }, new { @class = "text-remove" })</span>
                 }
-                @if (lb == false)
+                @if (Model[4] == null)
                 {
                     <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 5 })</span>
                 }
             </div>
 
             <div class="defender player-position">
-                <img src="@if (lcb == true) {@Html.DisplayFor(modelitem => objlcb.Player.PlayerPic)}">
-                <p class="player-name">@if (lcb == true)
-                {@Html.DisplayFor(modelitem => objlcb.Player.PlayerName)}</p>
-                <p class="position">LCB</p>
-                @if (lcb == true)
-                {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objlcb.PlayerId }, new { @class = "text-remove" })</span>
-                }
-                @if (lcb == false)
-                {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 3 })</span>
-                }
-            </div>
-
-            <div class="defender player-position">
-                <img src="@if (rcb == true) {@Html.DisplayFor(modelitem => objrcb.Player.PlayerPic)}">
-                <p class="player-name">@if (rcb == true)
-                {@Html.DisplayFor(modelitem => objrcb.Player.PlayerName)}</p>
-                <p class="position">RCB</p>
-                @if (rcb == true)
-                {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcb.PlayerId }, new { @class = "text-remove" })</span>
-                }
-                @if (rcb == false)
-                {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 2 })</span>
-                }
-            </div>
-    
-
-            <div class="defender player-position">
-                <img src="@if (rb == true) {@Html.DisplayFor(modelitem => objrb.Player.PlayerPic)}">
-                <p class="player-name">@if (rb == true)
-                {@Html.DisplayFor(modelitem => objrb.Player.PlayerName)}</p>
-                <p class="position">RB</p>
-                @if (rb == true)
-                {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrb.PlayerId }, new { @class = "text-remove" })</span>
-                }
-                @if (rb == false)
-                {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 4 })</span>
-                }
-            </div>
-    
-
+                <img src="@Html.DisplayFor(Model => Model[2].Player.PlayerPic)">
+                <p class="player-name">
+                    
+                @Html.DisplayFor(Model => Model[2].Player.PlayerName)
+            </p>
+            <p class="position">LCB</p>
+            @if (Model[2] != null)
+            {
+                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[2].PlayerId }, new { @class = "text-remove" })</span>
+            }
+            @if (Model[2] == null)
+            {
+                <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 3 })</span>
+            }
         </div>
-        <div class="goalkeeper">
 
-            <div class="player-position">
-                <img src="@if (gk == true) {@Html.DisplayFor(modelitem => objgk.Player.PlayerPic)}">
-                <p class="player-name">@if (gk == true)
-                {@Html.DisplayFor(modelitem => objgk.Player.PlayerName)}</p>
-                <p class="position">GK</p>
-                @if (gk == true)
-                {
-                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objgk.PlayerId }, new { @class = "text-remove" })</span>
-                }
-                @{ int i; }
-                @if (gk == false)
-                {
-                
-                    <span class="btn btn-success btn-xs"> @Html.ActionLink("Add Player", "setEverything",  new {id = 1})</span>
-                }
-            </div>
-        </div>
+        <div class="defender player-position">
+            <img src="@Html.DisplayFor(Model => Model[1].Player.PlayerPic)">
+            <p class="player-name">
+            @Html.DisplayFor(Model => Model[1].Player.PlayerName)
+        </p>
+        <p class="position">RCB</p>
+        @if (Model[1] != null)
+        {
+            <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[1].PlayerId }, new { @class = "text-remove" })</span>
+        }
+        @if (Model[1] == null)
+        {
+            <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 2 })</span>
+        }
     </div>
+
+
+    <div class="defender player-position">
+        <img src="@Html.DisplayFor(Model => Model[3].Player.PlayerPic)">
+        <p class="player-name">
+        @Html.DisplayFor(Model => Model[3].Player.PlayerName)
+    </p>
+    <p class="position">RB</p>
+    @if (Model[3] != null)
+    {
+        <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[3].PlayerId }, new { @class = "text-remove" })</span>
+    }
+    @if (Model[3] == null)
+    {
+        <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 4 })</span>
+    }
+    </div>
+
+
+    </div>
+    <div class="goalkeeper">
+
+        <div class="player-position">
+            <img src="@Html.DisplayFor(Model => Model[0].Player.PlayerPic)">
+            <p class="player-name">
+            @Html.DisplayFor(Model => Model[0].Player.PlayerName)
+        </p>
+        <p class="position">GK</p>
+        @if (Model[0] != null)
+        {
+            <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = Model[0].PlayerId }, new { @class = "text-remove" })</span>
+        }
+        @if (Model[0] == null)
+        {
+
+            <span class="btn btn-success btn-xs"> @Html.ActionLink("Add Player", "setEverything", new { id = 1 })</span>
+        }
+    </div>
+    </div>
+        </div>
         </div>
     <div class="col-md-4 players-div" style="height: 350px; overflow:auto;">
         <h3>Players</h3>

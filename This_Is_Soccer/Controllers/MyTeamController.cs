@@ -53,15 +53,15 @@ namespace This_Is_Soccer.Controllers
             {
                 int b = 0;
                 b = item.Player.PositionId - 1;
-                    
-                som[b] = new MyTeamModel {PlayerId = item.PlayerId, User = item.User } ;
-                
+
+                som[b] = new MyTeamModel { PlayerId = item.PlayerId, User = item.User, Player = item.Player };
+
                 System.Diagnostics.Debug.WriteLine(som[b]);
             }
             System.Diagnostics.Debug.WriteLine(som.Length);
 
-            return View(myTeamModels.ToList());
-            //return View(som);
+            //return View(myTeamModels.ToList());
+            return View(som);
         }
         public ActionResult RemovePlayer(int id)
         {
