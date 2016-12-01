@@ -38,5 +38,19 @@ namespace This_Is_Soccer.Models
             // SelectList selectList = new SelectList(db.PositionModels, "PositionId", "PositionName");
             return db.PositionModels;
         }
+        public IQueryable<PlayerModel> Search(string searchString)
+        {
+            var players = SelectAll().AsQueryable();
+            //var players = from m in db.PlayerModels select m;
+
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                players = players.Where(s => s.PlayerName.ToLower().Contains(searchString) ||
+                                             s.Club.ClubName.ToLower().Contains(searchString)
+                );
+            }
+            return players;
+        }
     }
 }

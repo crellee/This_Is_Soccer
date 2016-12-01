@@ -10,6 +10,7 @@ using This_Is_Soccer.Models.Entity;
 
 namespace This_Is_Soccer.Controllers
 {
+    [Authorize]
     public class MyTeamController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -42,14 +43,31 @@ namespace This_Is_Soccer.Controllers
             int count = classList.Count();
             System.Diagnostics.Debug.WriteLine(count);
 
+
+
+            var som = new MyTeamModel[11];
+
+            int i = 0;
+
+            foreach (var item in myTeamModels.ToList())
+            {
+                int b = 0;
+                b = item.Player.PositionId - 1;
+                    
+                som[b] = new MyTeamModel {PlayerId = item.PlayerId, User = item.User } ;
+                
+                System.Diagnostics.Debug.WriteLine(som[b]);
+            }
+            System.Diagnostics.Debug.WriteLine(som.Length);
+
             return View(myTeamModels.ToList());
+            //return View(som);
         }
-        public ActionResult RemovePlayer(int? id)
+        public ActionResult RemovePlayer(int id)
         {
-            System.Diagnostics.Debug.WriteLine("kig under: ");
-            System.Diagnostics.Debug.WriteLine(id);
+            string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
             //MyTeamModel myTeamModel = db.MyTeamModels.Find(id);
-            MyTeamModel teamModels = db.MyTeamModels.SingleOrDefault(m => m.PlayerId == id);
+            MyTeamModel teamModels = db.MyTeamModels.FirstOrDefault(m => m.PlayerId == id && m.Id == UserId); //m.PlayerId == id);
             db.MyTeamModels.Remove(teamModels);
             db.SaveChanges();
             return RedirectToAction("index");

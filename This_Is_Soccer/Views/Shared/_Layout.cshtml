@@ -35,8 +35,13 @@
                 <ul class="nav nav-sidebar">
                     <!--li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></!--li>-->
                     <li>@Html.ActionLink("My Team", "Index", "MyTeam")</li>
-                    <li><a href="#">Analytics</a></li>
-                    <li><a href="#">Export</a></li>
+                    <li>@Html.ActionLink("All Players", "Index", "Player")</li>
+                    @if (User.IsInRole("admin"))
+                    {
+                    <li>@Html.ActionLink("Countries", "Index", "Country")</li>
+                    <li>@Html.ActionLink("Clubs", "Index", "Club")</li>
+                    <li>@Html.ActionLink("Positions", "Index", "Position")</li>
+                    }
                 </ul>
                 <!--
                 <ul class="nav nav-sidebar">

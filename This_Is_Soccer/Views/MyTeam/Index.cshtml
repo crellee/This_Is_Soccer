@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<This_Is_Soccer.Models.Entity.MyTeamModel>
+
 @using This_Is_Soccer.Controllers
 @{
     ViewBag.Title = "Index";
@@ -72,7 +73,7 @@
                 <p class="position">RCF</p>
                 @if (rcf == true)
                 {
-                <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcf.PlayerId }, new { @class = "text-remove" })</span>
+                    <span class="btn btn-danger btn-xs"> @Html.ActionLink("Remove player", "RemovePlayer", new { id = objrcf.PlayerId }, new { @class = "text-remove" })</span>
                 }
                 @if (rcf == false)
                 {

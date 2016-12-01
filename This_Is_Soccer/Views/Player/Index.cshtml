@@ -4,7 +4,27 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Players</h2>
+
+@using (Html.BeginForm())
+{
+<div class="col-md-6">
+    <div id="custom-search-input">
+        <div class="input-group col-md-12">
+            <input type="text" class="form-control input-lg" placeholder="Search" name="SearchString" />
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+<br/>
+<br />
+<br />
+}
+ 
 @if (User.IsInRole("admin"))
 {
 <p>
@@ -28,7 +48,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Club.ClubName)
@@ -45,9 +66,9 @@
 
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PlayerId }) |                                                             
-            @Html.ActionLink("Details", "Details", new { id=item.PlayerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PlayerId })      
+            @Html.ActionLink("Edit", "Edit", new { id = item.PlayerId }) |                                                             
+            @Html.ActionLink("Details", "Details", new { id = item.PlayerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PlayerId })      
         </td>
    
     </tr>

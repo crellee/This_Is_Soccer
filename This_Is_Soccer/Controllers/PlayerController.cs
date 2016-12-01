@@ -34,9 +34,10 @@ namespace This_Is_Soccer.Controllers
         
 
         // GET: Player
-        public ActionResult Index()
+        public ActionResult Index(string searchString = "")
         {
-            var playerModels = repository.SelectAll();
+
+            var playerModels = repository.Search(searchString);
             return View(playerModels);
         }
         
