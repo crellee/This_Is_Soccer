@@ -5,48 +5,54 @@
 }
 
 <h2>About @Html.DisplayFor(model => model.PlayerName)</h2>
+<div class="col-md-12">
+    <div class="col-md-8">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Player Name:
+            </dt>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Player Name:
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PlayerName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PlayerName)
-        </dd>
+            <dt>
+                Club Name:
+            </dt>
 
-        <dt>
-            Club Name:
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Club.ClubName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Club.ClubName)
-            <br />
-            <img src="@Html.DisplayFor(model => model.Club.ClubLogo)" width="40px" height="40px" />
+            <dt>
+                Position:
+            </dt>
 
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Position.PositionName)
+            </dd>
 
-        <dt>
-            Position:
-        </dt>
+            <dt>
+                Player Picture:
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Position.PositionName)
-        </dd>
+            <dd>
+                <img src="@Html.DisplayFor(model => model.PlayerPic)" width="150px" height=150px">
+            </dd>
 
-        <dt>
-            Player Picture:
-        </dt>
-
-        <dd>
-            <img src="@Html.DisplayFor(model => model.PlayerPic)" width="150px" height=150px">
-        </dd>
-
-    </dl>
+        </dl>
+        <p>
+            @if(User.IsInRole("admin"))
+            {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.PlayerId })
+            } |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+    <div class="col-md-4">
+        <br/>
+        <br/>
+        <img src="@Html.DisplayFor(model => model.Club.ClubLogo)" width="100px" height="100px" />
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PlayerId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
