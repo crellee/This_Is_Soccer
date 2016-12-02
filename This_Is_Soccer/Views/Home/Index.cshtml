@@ -3,10 +3,54 @@
 }
 
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="jumbotron main-page-jumbo">
+    <h1>ThisIsSoccer</h1>
+    <p class="lead">In three simple steps you can sprove to your friends that you are the best team picking manager in the world</p>
+
+    <div class="row">
+        <div class="outside col-lg-4">
+            <div class="jumbo-sub-div" style="background-color: #1DABB8">
+                <div class="number-area">
+                    <p style="color: #1DABB8">1</p>
+                </div>
+                <div class="icon-area">
+                    <img src="~/Content/img/add-user.png" />
+                </div>
+                <div class="jumbo-text-area">
+                    <p>Sign up</p>
+                </div>
+            </div>
+          </div>
+           <div class="outside col-lg-4">
+                <div class="jumbo-sub-div" style="background-color: #FCB941">
+                    <div class="number-area">
+                        <p style="color: #FCB941">2</p>
+                    </div>
+                    <div class="icon-area">
+                        <img src="~/Content/img/Stadium Filled-100.png" />
+                    </div>
+                    <div class="jumbo-text-area">
+                        <p>Create your team</p>
+                    </div>
+                </div>
+            </div>
+        <div class="outside col-lg-4">
+            <div class="jumbo-sub-div" style="background-color: #55C34D">
+                <div class="number-area">
+                    <p style="color: #55C34D">3</p>
+                </div>
+                <div class="icon-area">
+                    <img src="~/Content/img/Globe-104.png" />
+                </div>
+                <div class="jumbo-text-area">
+                    <p>Present your team to the world</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: right">
+        <p class="btn btn-lg btn-primary">@Html.ActionLink("Get started!", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "register-btn" })</p>
+    </div>
 </div>
 <!--
 <div class="row">

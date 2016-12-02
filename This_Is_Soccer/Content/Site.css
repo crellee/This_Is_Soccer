@@ -179,3 +179,47 @@ body {
 .player-area {
     display: inline-block;
 }
+
+.jumbo-sub-div {
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.number-area > p{
+   background-color: white;
+   display: inline-block;
+   padding: 10px;
+   border-radius: 50%;
+   margin: 0;
+   width: 45px;
+   font-weight: bold;
+}
+
+.icon-area{
+    margin-top: 30px;
+}
+
+.jumbo-text-area{
+    margin-top: 10px;
+}
+
+.register-btn{
+    text-decoration: none;
+    color: #fff;
+}
+
+.register-btn:hover{
+    text-decoration: none;
+    color: #fff;
+}
+
+.main-page-jumbo{
+    background-image: url('img/96b2445f75d1338341636a63e5cd26b7.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}

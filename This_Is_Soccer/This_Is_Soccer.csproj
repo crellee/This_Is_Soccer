@@ -230,7 +230,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\football_pitch.css" />
     <Content Include="Content\img\4514537-football-stadium-wallpapers.jpg" />
+    <Content Include="Content\img\add-user.png" />
     <Content Include="Content\img\football-field-1428839_960_720.png" />
+    <Content Include="Content\img\Globe-104.png" />
+    <Content Include="Content\img\Stadium Filled-100.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
