@@ -221,6 +221,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interface\IGenericRepository.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MyTeamRepository.cs" />
     <Compile Include="Models\PlayerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -230,6 +231,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\football_pitch.css" />
     <Content Include="Content\img\4514537-football-stadium-wallpapers.jpg" />
+    <Content Include="Content\img\96b2445f75d1338341636a63e5cd26b7.jpg" />
     <Content Include="Content\img\add-user.png" />
     <Content Include="Content\img\football-field-1428839_960_720.png" />
     <Content Include="Content\img\Globe-104.png" />
