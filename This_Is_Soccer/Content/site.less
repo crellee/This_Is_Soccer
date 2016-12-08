@@ -23,22 +23,31 @@ textarea {
     max-width: 280px;
 }
 */
+
 /*
  * Base structure
  */
+
 /* Move down content because we have a fixed navbar that is 50px tall */
+
+@error-message: red;
+
 body {
   padding-top: 50px;
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+
 /*
  * Global add-ons
  */
+
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
@@ -46,9 +55,12 @@ body {
 .navbar-fixed-top {
   border: 0;
 }
+
 /*
  * Sidebar
  */
+
+
 /* Hide for mobile, show later */
 /*
         //Dette gjorde at vi navbaren forsvandt. Vi skal tilføje noget css til når den er mindre end 768px
@@ -67,16 +79,15 @@ body {
     display: block;
     padding: 20px;
     overflow-x: hidden;
-    overflow-y: auto;
-    /* Scrollable contents if viewport is shorter than content. */
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #f5f5f5;
     border-right: 1px solid #eee;
   }
 }
+
 /* Sidebar navigation */
 .nav-sidebar {
-  margin-right: -21px;
-  /* 20px padding + 1px border */
+  margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
   margin-left: -20px;
 }
@@ -90,9 +101,12 @@ body {
   color: #fff;
   background-color: #428bca;
 }
+
+
 /*
  * Main content
  */
+
 .main {
   padding: 20px;
 }
@@ -105,9 +119,12 @@ body {
 .main .page-header {
   margin-top: 0;
 }
+
+
 /*
  * Placeholder dashboard ideas
  */
+
 .placeholders {
   margin-bottom: 30px;
   text-align: center;
@@ -122,78 +139,94 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
-.text-remove {
-  color: #fff;
-  text-decoration: none;
+
+.text-remove{
+    color: #fff;
+    text-decoration: none;
 }
-.text-remove:hover {
-  color: #fff;
-  text-decoration: none;
+
+.text-remove:hover{
+    color: #fff;
+    text-decoration: none;
 }
-.text-remove:visited {
-  color: #fff;
-  text-decoration: none;
+
+.text-remove:visited{
+    color: #fff;
+    text-decoration: none;
 }
-.players-table {
-  background-color: #fff;
+
+.players-table{
+    background-color: #fff;
 }
+
 .players-table tr:nth-child(even) {
-  background-color: #eee;
+    background-color: #eee;
 }
 .players-table tr:nth-child(odd) {
-  background-color: #fff;
+    background-color: #fff;
 }
-.players-div {
-  border: 1px solid black;
-  margin-left: 40px;
-  background-color: #fff;
+
+.players-div{
+    border: 1px solid black;
+    margin-left: 40px;
+    background-color: #fff;
 }
+
 .my-team-main {
-  background-image: url('img/4514537-football-stadium-wallpapers.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 20px;
+    background-image: url('img/4514537-football-stadium-wallpapers.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
 }
+
 .player-area {
-  display: inline-block;
+    display: inline-block;
 }
+
 .jumbo-sub-div {
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  border-radius: 10px;
-  height: 300px;
-  margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    height: 300px;
+    margin-bottom: 20px;
 }
-.number-area > p {
-  background-color: white;
-  display: inline-block;
-  padding: 10px;
-  border-radius: 50%;
-  margin: 0;
-  width: 45px;
-  font-weight: bold;
+
+.number-area > p{
+   background-color: white;
+   display: inline-block;
+   padding: 10px;
+   border-radius: 50%;
+   margin: 0;
+   width: 45px;
+   font-weight: bold;
 }
-.icon-area {
-  margin-top: 30px;
+
+.icon-area{
+    margin-top: 30px;
 }
-.jumbo-text-area {
-  margin-top: 10px;
+
+.jumbo-text-area{
+    margin-top: 10px;
 }
-.register-btn {
-  text-decoration: none;
-  color: #fff;
+
+.register-btn{
+    text-decoration: none;
+    color: #fff;
 }
-.register-btn:hover {
-  text-decoration: none;
-  color: #fff;
+
+.register-btn:hover{
+    text-decoration: none;
+    color: #fff;
 }
-.main-page-jumbo {
-  background-image: url('img/96b2445f75d1338341636a63e5cd26b7.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff;
+
+.main-page-jumbo{
+    background-image: url('img/96b2445f75d1338341636a63e5cd26b7.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
 }
 .input-validation-error {
-  border: 1px solid red;
+    border: 1px solid @error-message;
+}body {
 }
