@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace This_Is_Soccer.Models.Interface
 {
-    interface IGenericRepository<T> where T:class
+    public interface IGenericRepository<T> where T:class
     {
         IEnumerable<T> SelectAll();
         T SelectByID(object id);
