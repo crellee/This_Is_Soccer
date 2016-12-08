@@ -294,7 +294,7 @@ namespace This_Is_Soccer.Migrations
                                                                         {
                                                                             PlayerId = 14,
                                                                             PlayerName = "Ronaldo",
-                                                                            PlayerPic = "http://futhead.cursecdn.com/static/img/17/players/173731.png ",
+                                                                            PlayerPic = "http://futhead.cursecdn.com/static/img/17/players/20801.png",
                                                                             ClubId = 2,
                                                                             PositionId = 9
                                                                         },
@@ -597,7 +597,7 @@ namespace This_Is_Soccer.Migrations
                                                                         new PlayerModel
                                                                         {
                                                                             PlayerId = 52,
-                                                                            PlayerName = "Lahm",
+                                                                            PlayerName = "Piszczek",
                                                                             PlayerPic = "http://futhead.cursecdn.com/static/img/17/players/173771.png ",
                                                                             ClubId = 5,
                                                                             PositionId = 4
