@@ -16,8 +16,8 @@ namespace This_Is_Soccer.Controllers
     public class PlayerController : Controller
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
-        private PlayerRepository repository = null;
-        private GenericRepository<PlayerModel> genericRepo = null;
+        private  IPlayerRepository repository;
+        private IGenericRepository<PlayerModel> genericRepo;
 
         public PlayerController()
         {
@@ -26,7 +26,7 @@ namespace This_Is_Soccer.Controllers
         }
 
         
-        PlayerController(PlayerRepository repository, GenericRepository<PlayerModel> genericRepo)
+        public PlayerController(IPlayerRepository repository, IGenericRepository<PlayerModel> genericRepo)
         {
             this.repository = repository;
             this.genericRepo = genericRepo;

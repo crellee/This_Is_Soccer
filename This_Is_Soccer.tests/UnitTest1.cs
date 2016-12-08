@@ -14,16 +14,26 @@ namespace This_Is_Soccer.tests
         [TestMethod]
         public void TestMethod1()
         {
-            var mocrepo2 = new Mock<IGenericRepository<PlayerModel>>();
-            PlayerController controller = new PlayerController(mocrepo2.Object);
+            
+            //Arrange
+            var MockIPlayerRepo = new Mock<IPlayerRepository>();
+            var MockIGenericRepo = new Mock<IGenericRepository<PlayerModel>>();
+            PlayerController controller = new PlayerController(MockIPlayerRepo.Object, MockIGenericRepo.Object);
             PlayerModel player = new PlayerModel()
             {
-                PlayerId = 200,
+                PlayerId = 2,
                 PlayerName = "Chris",
                 PlayerPic = "http://futhead.cursecdn.com/static/img/17/players/193041.png",
                 ClubId = 2,
                 PositionId = 1
             };
+
+            //Act
+            controller.Create(player);
+
+            //Assert
+            MockIGenericRepo.Verify(r => r.Insert(player));
+            
 
         }
     }

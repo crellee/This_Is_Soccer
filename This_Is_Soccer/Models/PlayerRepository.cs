@@ -6,11 +6,15 @@ using This_Is_Soccer.Models;
 using This_Is_Soccer.Models.Entity;
 using System.Data.Entity;
 using System.Web.Mvc;
+using This_Is_Soccer.Models.Interface;
 
 namespace This_Is_Soccer.Models
 {
-    public class PlayerRepository : GenericRepository<PlayerModel>
+  
+    public class PlayerRepository : IPlayerRepository
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public IEnumerable<PlayerModel> SelectAll()
         {
             var playerModels = db.PlayerModels.Include(p => p.Club).Include(p => p.Position);
