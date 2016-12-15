@@ -23,7 +23,7 @@
                 }
                 @if (Model[10] == null)
                 {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 11 })</span>
+                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 11 })</span>
                 }
             </div>
 
@@ -38,7 +38,7 @@
                 }
                 @if (Model[9] == null)
                 {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 10 })</span>
+                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 10 })</span>
                 }
             </div>
         
@@ -58,7 +58,7 @@
                 }
                 @if (Model[8] == null)
                 {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 9 })</span>
+                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 9 })</span>
                 }
             </div>
     
@@ -74,7 +74,7 @@
                 }
                 @if (Model[6] == null)
                 {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 7 })</span>
+                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 7 })</span>
                 }
             </div>
 
@@ -89,7 +89,7 @@
                 }
                 @if (Model[5] == null)
                 {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 6 })</span>
+                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 6 })</span>
                 }
             </div>
 
@@ -105,7 +105,7 @@
                 }
                 @if (Model[7] == null)
                 {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 8 })</span>
+                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 8 })</span>
                 }
             </div>
         </div>
@@ -123,7 +123,7 @@
                 }
                 @if (Model[4] == null)
                 {
-                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 5 })</span>
+                    <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 5 })</span>
                 }
             </div>
 
@@ -140,7 +140,7 @@
             }
             @if (Model[2] == null)
             {
-                <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 3 })</span>
+                <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 3 })</span>
             }
         </div>
 
@@ -156,7 +156,7 @@
         }
         @if (Model[1] == null)
         {
-            <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 2 })</span>
+            <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 2 })</span>
         }
     </div>
 
@@ -173,7 +173,7 @@
     }
     @if (Model[3] == null)
     {
-        <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setEverything", new { id = 4 })</span>
+        <span class="btn btn-success btn-xs">@Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 4 })</span>
     }
     </div>
 
@@ -194,7 +194,7 @@
         @if (Model[0] == null)
         {
 
-            <span class="btn btn-success btn-xs"> @Html.ActionLink("Add Player", "setEverything", new { id = 1 })</span>
+            <span class="btn btn-success btn-xs"> @Html.ActionLink("Add Player", "setPlayersAtPosition", new { id = 1 })</span>
         }
     </div>
     </div>
@@ -203,8 +203,8 @@
     <div class="col-md-4 players-div" style="height: 350px; overflow:auto;">
         <h3>Players</h3>
         <table class="table players-table">
-            @{ var de = new MyTeamController();
-               var players = de.getEverything(); 
+            @{ var myTeamController = new MyTeamController();
+               var players = myTeamController.getPlayersAtPosition(); 
              }
             @foreach (var item in players)
             {

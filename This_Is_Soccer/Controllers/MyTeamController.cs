@@ -27,14 +27,14 @@ namespace This_Is_Soccer.Controllers
             return RedirectToAction("index");
         }
         
-        public ActionResult setEverything(int? id)
+        public ActionResult setPlayersAtPosition(int? id)
         {
             repository.SetPlayersToAdd(id);
             return RedirectToAction("Index");
 
         }
 
-        public IEnumerable<PlayerModel> getEverything()
+        public IEnumerable<PlayerModel> getPlayersAtPosition()
         {
             var players = repository.GetPlayersToAdd();
             return players;
