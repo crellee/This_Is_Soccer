@@ -13,7 +13,7 @@ namespace This_Is_Soccer.Models.Interface
         {
             IEnumerable<PlayerModel> SelectAll();
 
-           PlayerModel SelectByID(int? id);
+            PlayerModel SelectByID(int? id);
 
 
             DbSet<ClubModel> GetClubModels();
@@ -22,6 +22,8 @@ namespace This_Is_Soccer.Models.Interface
             DbSet<PositionModel> GetPositionModels();
 
             IQueryable<PlayerModel> Search(string searchString);
+
+            IEnumerable<PlayerModel> getTeamMates(int? clubId, int? playerId);
             
            
         }

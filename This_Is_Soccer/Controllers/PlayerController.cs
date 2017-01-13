@@ -10,6 +10,7 @@ using This_Is_Soccer.Models;
 using This_Is_Soccer.Models.Entity;
 using This_Is_Soccer.Models.Interface;
 using System.Data.Entity;
+using This_Is_Soccer.Models.Entity.ViewModels;
 
 namespace This_Is_Soccer.Controllers
 {
@@ -54,6 +55,30 @@ namespace This_Is_Soccer.Controllers
                 return HttpNotFound();
             }
             return View(playerModel);
+        }
+
+        public ActionResult PlayerDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PlayerModel playerModel = repository.SelectByID(id);
+            if (playerModel == null)
+            {
+                return HttpNotFound();
+            }
+            var playerDetailsViewModel = new PlayerDetailsViewModel();
+            playerDetailsViewModel.Player = playerModel;
+
+            var teamMates = repository.getTeamMates(playerModel.ClubId, playerModel.PlayerId);
+            playerDetailsViewModel.Players = teamMates.ToList();
+
+            playerDetailsViewModel.Players.ForEach(p => System.Diagnostics.Debug.WriteLine(p.PlayerName));
+
+            System.Diagnostics.Debug.WriteLine(playerDetailsViewModel.Player.PlayerName);
+
+            return View(playerDetailsViewModel);
         }
 
 
@@ -156,16 +181,7 @@ namespace This_Is_Soccer.Controllers
             return RedirectToAction("Index");
         }
 
-        /*
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-        */
+
         
         
     }

@@ -56,5 +56,11 @@ namespace This_Is_Soccer.Models
             }
             return players;
         }
+
+        public IEnumerable<PlayerModel> getTeamMates(int? clubId, int? playerId)
+        {
+            var players = db.PlayerModels.Include(p => p.Club).Where(p => p.ClubId == clubId && p.PlayerId != playerId);
+            return players;
+        }
     }
 }

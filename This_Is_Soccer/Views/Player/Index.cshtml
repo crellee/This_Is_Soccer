@@ -67,7 +67,7 @@
 
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.PlayerId }) |                                                             
-            @Html.ActionLink("Details", "Details", new { id = item.PlayerId }) |
+            @Html.ActionLink("Details", "PlayerDetails", new { id = item.PlayerId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.PlayerId })      
         </td>
    
@@ -85,7 +85,7 @@ else
             @foreach (var item in Model)
             {
                 <div class="col-md-2 col-xs-4 student-area" ;>
-                    <a href="@Url.Action("Details", "Player", new { id = item.PlayerId })"><img class="img-responsive" src="@Url.Content(item.PlayerPic)" /></a>
+                    <a href="@Url.Action("PlayerDetails", "Player", new { id = item.PlayerId })"><img class="img-responsive" src="@Url.Content(item.PlayerPic)" /></a>
                     <div class="text-area">
                         <p>@Html.DisplayFor(modelItem => item.PlayerName) </p>
                     </div>
