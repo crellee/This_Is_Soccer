@@ -70,6 +70,7 @@
                     <td>
                         @Html.DisplayFor(model => item.PlayerName)
                     </td>
+                    <td><span class="btn btn-primary btn-xs details-button">@Html.ActionLink("Details", "PlayerDetails", new { id = item.PlayerId }, new { @class = "text-remove" })</span></td>
                 </tr>
             }
         </table>
