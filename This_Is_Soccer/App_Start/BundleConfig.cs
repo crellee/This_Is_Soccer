@@ -25,7 +25,8 @@ namespace This_Is_Soccer
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.min.css",
+                      "~/Content/football_pitch.css"));
         }
     }
 }
